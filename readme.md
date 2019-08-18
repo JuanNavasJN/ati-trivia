@@ -1,3 +1,3 @@
 ```sh
-python app.jpy
+python app.py
 ```
