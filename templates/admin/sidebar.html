@@ -1,0 +1,73 @@
+{% block sidebar %}
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <div class="sidebar-brand-icon rotate-n-15">
+        <i class="fas fa-laugh-wink"></i>
+      </div>
+      <div class="sidebar-brand-text mx-3">Trivias</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+      <a class="nav-link" href="/admin">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Nav Item - Categorias -->
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/categorias">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Categorias</span></a>
+    </li>
+
+    <!-- Nav Item - Trivias -->
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/trivias">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Trivias</span></a>
+    </li>
+
+    <!-- Nav Item - Premios -->
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/premios">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Premios</span></a>
+    </li>
+
+    <!-- Nav Item - Sorteos -->
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/sorteos">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Sorteos</span></a>
+    </li>
+
+    <!-- Nav Item - Reglas -->
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/reglas">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Reglas</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+  </ul>
+  <!-- End of Sidebar -->
+  
+{% endblock %}
