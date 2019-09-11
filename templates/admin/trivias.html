@@ -124,7 +124,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>#</th>
+                      <th>ID</th>
                       <th>Pregunta</th>
                       <th>Imagen</th>
                       <th>Audio</th>
@@ -341,26 +341,7 @@
 {% block script %}
 
   <script>
-      let count = 0;
-
-      $('#save-category').click( e => {
-        e.preventDefault()
-        let category = $('#name-category').val()
-
-        if(category !== ""){
-          
-          count++;
-          $('#categories').append(`
-            <tr>
-              <td>${count}</td>
-              <td>${category}</td>
-            </tr>
-          `)
-
-          $('#name-category').val("")
-        }
-        
-      })
+      
      
   </script>
 
