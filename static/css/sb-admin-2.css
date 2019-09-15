@@ -11674,38 +11674,38 @@ form.user .btn-user {
   padding: 0.75rem 1rem;
 }
 
-.btn-google {
+.btn-twitter {
   color: #fff;
-  background-color: #ea4335;
+  background-color: #00acee;
   border-color: #fff;
 }
 
-.btn-google:hover {
+.btn-twitter:hover {
   color: #fff;
   background-color: #e12717;
   border-color: #e6e6e6;
 }
 
-.btn-google:focus, .btn-google.focus {
+.btn-twitter:focus, .btn-twitter.focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }
 
-.btn-google.disabled, .btn-google:disabled {
+.btn-twitter.disabled, .btn-twitter:disabled {
   color: #fff;
   background-color: #ea4335;
   border-color: #fff;
 }
 
-.btn-google:not(:disabled):not(.disabled):active, .btn-google:not(:disabled):not(.disabled).active,
-.show > .btn-google.dropdown-toggle {
+.btn-twitter:not(:disabled):not(.disabled):active, .btn-twitter:not(:disabled):not(.disabled).active,
+.show > .btn-twitter.dropdown-toggle {
   color: #fff;
   background-color: #d62516;
   border-color: #dfdfdf;
 }
 
-.btn-google:not(:disabled):not(.disabled):active:focus, .btn-google:not(:disabled):not(.disabled).active:focus,
-.show > .btn-google.dropdown-toggle:focus {
+.btn-twitter:not(:disabled):not(.disabled):active:focus, .btn-twitter:not(:disabled):not(.disabled).active:focus,
+.show > .btn-twitter.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
 }

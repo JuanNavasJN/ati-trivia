@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 
 app = Flask(__name__)
 
@@ -18,8 +18,12 @@ def register():
 def forgotPassword():
     return render_template('login/forgot-password.html')
     
-@app.route('/admin') 
+@app.route('/admin')
 def admin():
+    return redirect('/admin/categorias', code=302)
+
+@app.route('/admin/dash')
+def dashboard():
     return render_template('admin/dashboard.html')
 
 @app.route('/admin/categorias') 

@@ -41,8 +41,8 @@ form.user {
 
 }
 
-.btn-google {
-  @include button-variant($brand-google, $white);
+.btn-twitter {
+  @include button-variant($brand-twitter, $white);
 }
 
 .btn-facebook {
