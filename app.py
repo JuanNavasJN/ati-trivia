@@ -23,51 +23,50 @@ def admin():
     return redirect('/admin/categorias', code=302)
 
 @app.route('/admin/dash')
-def dashboard():
+def admindashboard():
     return render_template('admin/dashboard.html')
 
 @app.route('/admin/categorias') 
-def categorias():
+def admincategorias():
     return render_template('admin/categorias.html')
 
 @app.route('/admin/trivias') 
-def trivias():
+def admintrivias():
     return render_template('admin/trivias.html')
 
 @app.route('/admin/premios') 
-def premios():
+def adminpremios():
     return render_template('admin/premios.html')
 
 @app.route('/admin/sorteos') 
-def sorteos():
+def adminsorteos():
     return render_template('admin/sorteos.html')
 
 @app.route('/admin/reglas') 
-def reglas():
+def adminReglas():
     return render_template('admin/reglas.html')
+   
 
-    
-
-#Rutas para el Usuario home, login, registro, trivias, ranking, ayuda, cuenta
+#Rutas para el Usuario 
 
 @app.route('/home') 
-def reglas():
+def home():
     return render_template('user/home.html')
 
 @app.route('/trivia') 
-def reglas():
+def trivia():
     return render_template('user/trivia.html')
 
 @app.route('/ranking') 
-def reglas():
+def ranking():
     return render_template('user/ranking.html')
 
 @app.route('/ayuda') 
-def reglas():
+def ayuda():
     return render_template('user/ayuda.html')
 
 @app.route('/cuenta') 
-def reglas():
+def cuenta():
     return render_template('user/cuenta.html')
 
 

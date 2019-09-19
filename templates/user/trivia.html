@@ -1,0 +1,115 @@
+{% extends "user/base-user.html" %}
+
+{% block content %}
+
+    <!-- main content-->
+    <main>
+      <div class="container mt-3">
+        <div class="row">
+          <div class="col-md-5  col-12">
+            <h6 class="text-muted">DEPORTES</h6>
+            <h1>El mejor del futbol</h1>
+          </div>
+          <div class="col-md-7 col-12 text-center">
+            <h6 class="text-muted">Tiempo restante</h6>
+            <div class="progress">
+              <div
+                class="progress-bar w-75 bg-dark"
+                role="progressbar"
+                aria-valuenow="75"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-2 col-12"></div>
+          <div class="col-md-8 col-12">
+            <div class="card text-center text-dark border-dark">
+              <div class="card-header">
+                Pregunta:
+              </div>
+              <div class="card-body">
+                <h2 class="card-title">
+                  ¿Cual es el jugador de futbol con mas goles en mundiales?
+                </h2>
+              </div>
+              <div class="card-foote text-muted">
+                Responde por 150 puntos!
+              </div>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-md-6 mt-1 mb-1">
+                <div class="row">
+                  <div class="col-2">
+                    <img
+                      src="../../static/img/d1.PNG"
+                      class="img-respuesta"
+                      alt="respuesta"
+                    />
+                  </div>
+                  <div class="col-10">
+                    <button class="btn btn-outline-dark btn-block">
+                      Cristiano Ronaldo
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mt-1 mb-1">
+                <div class="row">
+                  <div class="col-2">
+                    <img
+                      src="../../static/img/d2.jpg"
+                      class="img-respuesta"
+                      alt="respuesta"
+                    />
+                  </div>
+                  <div class="col-10">
+                    <button class="btn  btn-outline-dark btn-block">
+                      Messi
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mt-1 mb-1">
+                <div class="row">
+                  <div class="col-2">
+                    <img
+                      src="../../static/img/d3.PNG"
+                      class="img-respuesta"
+                      alt="respuesta"
+                    />
+                  </div>
+                  <div class="col-10">
+                    <button class="btn btn-outline-dark btn-block">
+                      Neymar
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mt-1 mb-1">
+                <div class="row">
+                  <div class="col-2">
+                    <img
+                      src="../../static/img/d4.jpg"
+                      class="img-respuesta"
+                      alt="respuesta"
+                    />
+                  </div>
+                  <div class="col-10">
+                    <button class="btn btn-outline-dark btn-block">
+                      Bale
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 col-12"></div>
+        </div>
+      </div>
+    </main>
+{% endblock%}
