@@ -46,5 +46,30 @@ def sorteos():
 def reglas():
     return render_template('admin/reglas.html')
 
+    
+
+#Rutas para el Usuario home, login, registro, trivias, ranking, ayuda, cuenta
+
+@app.route('/home') 
+def reglas():
+    return render_template('user/home.html')
+
+@app.route('/trivia') 
+def reglas():
+    return render_template('user/trivia.html')
+
+@app.route('/ranking') 
+def reglas():
+    return render_template('user/ranking.html')
+
+@app.route('/ayuda') 
+def reglas():
+    return render_template('user/ayuda.html')
+
+@app.route('/cuenta') 
+def reglas():
+    return render_template('user/cuenta.html')
+
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
