@@ -1,52 +1,77 @@
-{% extends "user/base-user.html" %}
+{% extends "user/base-user.html" %} {% block content %}
+<div class="container mb-4">
+  <div class=" shadow animated--grow-in show" style="border-radius: 30px;">
+    <h1 class="text-center my-4">
+      Ranking
+    </h1>
+    <a class="dropdown-item d-flex align-items-center" href="#">
+      <div class="dropdown-list-image mr-3">
+        <img
+          class="rounded-circle"
+          src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
+          alt=""
+        />
+        <div class="status-indicator bg-success"></div>
+      </div>
+      <div class="font-weight-bold">
+        <div class="text-truncate">
+          <h3 style="display:inline-block;">Emily Caputo #1</h3>
+        </div>
+        <div class="small text-gray-500">Venezuela · 58453 puntos</div>
+      </div>
+    </a>
+    <a class="dropdown-item d-flex align-items-center" href="#">
+      <div class="dropdown-list-image mr-3">
+        <img
+          class="rounded-circle"
+          src="https://source.unsplash.com/CS2uCrpNzJY/60x60"
+          alt=""
+        />
+        <div class="status-indicator bg-warning"></div>
+      </div>
+      <div class="font-weight-bold">
+        <div class="text-truncate">
+          <h3 style="display:inline-block;">Morgan Alvarez #2</h3>
+        </div>
+        <div class="small text-gray-500">Colombia · 54545 puntos</div>
+      </div>
+    </a>
+    <a class="dropdown-item d-flex align-items-center" href="#">
+      <div class="dropdown-list-image mr-3">
+        <img
+          class="rounded-circle"
+          src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+          alt=""
+        />
+        <div class="status-indicator bg-success"></div>
+      </div>
+      <div class="font-weight-bold">
+        <div class="text-truncate">
+          <h3 style="display:inline-block;">El perrito #3</h3>
+        </div>
+        <div class="small text-gray-500">Brasil · 52552 puntos</div>
+      </div>
+    </a>
+    <a class="dropdown-item d-flex align-items-center" href="#">
+      <div class="dropdown-list-image mr-3">
+        <img
+          class="rounded-circle"
+          src="https://source.unsplash.com/random/60x60"
+          alt=""
+        />
+        <div class="status-indicator bg-success"></div>
+      </div>
+      <div class="font-weight-bold">
+        <div class="text-truncate">
+          <h3 style="display:inline-block;">Usuario</h3>
+        </div>
+        <div class="small text-gray-500">Brasil · 52552 puntos</div>
+      </div>
+    </a>
 
-{% block content %}
-<div class="container" >
-        <div class=" shadow animated--grow-in show" style="border-radius: 30px;">
-                <h1 class="text-center my-4">
-                  Ranking
-                </h1>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><h3 style="display:inline-block;">Emily Caputo #1</h3></div>
-                    <div class="small text-gray-500">Venezuela · 58453 puntos</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate"><h3 style="display:inline-block;">Morgan Alvarez  #2</h3> </div>
-                    <div class="small text-gray-500">Colombia · 54545 puntos</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                        <div class="text-truncate"><h3 style="display:inline-block;">El perrito #3</h3></div>
-                    <div class="small text-gray-500">Brasil · 52552 puntos</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                        <div class="text-truncate"><h3 style="display:inline-block;">El perrito #3</h3></div>
-                    <div class="small text-gray-500">Brasil · 52552 puntos</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Ver más</a>
-              </div>
+    <a class="dropdown-item text-center small text-gray-500" href="#"
+      >Ver más</a
+    >
+  </div>
 </div>
 {% endblock %}

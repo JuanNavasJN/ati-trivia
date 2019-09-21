@@ -1,115 +1,182 @@
-{% extends "user/base-user.html" %}
+{% extends "user/base-user.html" %} {% block content %}
 
-{% block content %}
-
-    <!-- main content-->
-    <main>
-      <div class="container mt-3">
-        <div class="row">
-          <div class="col-md-5  col-12">
-            <h6 class="text-muted">DEPORTES</h6>
-            <h1>El mejor del futbol</h1>
-          </div>
-          <div class="col-md-7 col-12 text-center">
-            <h6 class="text-muted">Tiempo restante</h6>
-            <div class="progress">
-              <div
-                class="progress-bar w-75 bg-dark"
-                role="progressbar"
-                aria-valuenow="75"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="row">
-          <div class="col-md-2 col-12"></div>
-          <div class="col-md-8 col-12">
-            <div class="card text-center text-dark border-dark">
-              <div class="card-header">
-                Pregunta:
-              </div>
-              <div class="card-body">
-                <h2 class="card-title">
-                  ¿Cual es el jugador de futbol con mas goles en mundiales?
-                </h2>
-              </div>
-              <div class="card-foote text-muted">
-                Responde por 150 puntos!
-              </div>
-            </div>
-            <br />
-            <div class="row">
-              <div class="col-md-6 mt-1 mb-1">
-                <div class="row">
-                  <div class="col-2">
-                    <img
-                      src="../../static/img/d1.PNG"
-                      class="img-respuesta"
-                      alt="respuesta"
-                    />
-                  </div>
-                  <div class="col-10">
-                    <button class="btn btn-outline-dark btn-block">
-                      Cristiano Ronaldo
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 mt-1 mb-1">
-                <div class="row">
-                  <div class="col-2">
-                    <img
-                      src="../../static/img/d2.jpg"
-                      class="img-respuesta"
-                      alt="respuesta"
-                    />
-                  </div>
-                  <div class="col-10">
-                    <button class="btn  btn-outline-dark btn-block">
-                      Messi
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 mt-1 mb-1">
-                <div class="row">
-                  <div class="col-2">
-                    <img
-                      src="../../static/img/d3.PNG"
-                      class="img-respuesta"
-                      alt="respuesta"
-                    />
-                  </div>
-                  <div class="col-10">
-                    <button class="btn btn-outline-dark btn-block">
-                      Neymar
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 mt-1 mb-1">
-                <div class="row">
-                  <div class="col-2">
-                    <img
-                      src="../../static/img/d4.jpg"
-                      class="img-respuesta"
-                      alt="respuesta"
-                    />
-                  </div>
-                  <div class="col-10">
-                    <button class="btn btn-outline-dark btn-block">
-                      Bale
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-2 col-12"></div>
+<!-- main content-->
+<main>
+  <div class="container mt-3 mb-3">
+    <div class="row">
+      <div class="col-md-5  col-12">
+        <h6 class="text-muted">DEPORTES</h6>
+        <h1>El mejor del futbol</h1>
+      </div>
+      <div class="col-md-7 col-12 text-center">
+        <h6 class="text-muted">Tiempo restante</h6>
+        <div class="progress">
+          <div
+            id="barra"
+            class="progress-bar bg-dark"
+            role="progressbar"
+            style="width: 0%"
+            aria-valuenow="100"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
         </div>
       </div>
-    </main>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-md-2 col-12"></div>
+      <div class="col-md-8 col-12">
+        <div id="pregunta" class="card text-center text-dark border-dark">
+          <div class="card-header">
+            Pregunta:
+          </div>
+          <div class="card-body">
+            <h2 class="card-title">
+              ¿Cual es el jugador de futbol con mas goles en mundiales?
+            </h2>
+          </div>
+          <div class="card-foote text-muted">
+            Responde por 150 puntos!
+          </div>
+        </div>
+        <div id="resultado" class="text-center display-1 "></div>
+        <br />
+        <div class="row" id="opciones">
+          <div class="col-md-6 mt-1 mb-1">
+            <div class="row">
+              <div class="col-2">
+                <img
+                  src="../../static/img/d1.PNG"
+                  class="img-respuesta"
+                  alt="respuesta"
+                />
+              </div>
+              <div class="col-10">
+                <button
+                  id="op1"
+                  onClick="onSelect('op1')"
+                  class="btn btn-outline-dark btn-block"
+                >
+                  Cristiano Ronaldo
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-1 mb-1">
+            <div class="row">
+              <div class="col-2">
+                <img
+                  src="../../static/img/d2.jpg"
+                  class="img-respuesta"
+                  alt="respuesta"
+                />
+              </div>
+              <div class="col-10">
+                <button
+                  id="op2"
+                  onClick="onSelect('op2')"
+                  class="btn  btn-outline-dark btn-block"
+                >
+                  Messi
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-1 mb-1">
+            <div class="row">
+              <div class="col-2">
+                <img
+                  src="../../static/img/d3.PNG"
+                  class="img-respuesta"
+                  alt="respuesta"
+                />
+              </div>
+              <div class="col-10">
+                <button
+                  id="op3"
+                  onClick="onSelect('op3')"
+                  class="btn btn-outline-dark btn-block"
+                >
+                  Neymar
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-1 mb-1">
+            <div class="row">
+              <div class="col-2">
+                <img
+                  src="../../static/img/d4.jpg"
+                  class="img-respuesta"
+                  alt="respuesta"
+                />
+              </div>
+              <div class="col-10">
+                <button
+                  id="op4"
+                  onClick="onSelect('op4')"
+                  class="btn btn-outline-dark btn-block"
+                >
+                  Bale
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-12"></div>
+    </div>
+  </div>
+</main>
+<script>
+  var barra = document.getElementById("barra");
+  var resultado = document.getElementById("resultado");
+  var pregunta = document.getElementById("pregunta");
+  var opciones = document.getElementById("opciones");
+
+  var optionSelected = false;
+  var width = "0%";
+  var timeOut = false;
+
+  function updateBarra(index) {
+    var tiempoBarra = setTimeout(function() {
+      width = index / 2 + "%";
+      barra.style.width = width;
+      if (index === 200) {
+        timeOut = true;
+        pregunta.parentNode.removeChild(pregunta);
+        opciones.parentNode.removeChild(opciones);
+        resultado.innerHTML = "¡Se acabo el tiempo!";
+      } else if (optionSelected === true) {
+        clearTimeout(tiempoBarra);
+      } else {
+        updateBarra(index + 1);
+      }
+    }, 100);
+  }
+
+  function onSelect(id) {
+    if (optionSelected || timeOut) {
+      return;
+    } else {
+      optionSelected = true;
+    }
+    var option = document.getElementById(id);
+    // quitando el mensaje
+    pregunta.parentNode.removeChild(pregunta);
+    opciones.parentNode.removeChild(opciones);
+    if (id === "op1") {
+      option.classList.remove("btn-outline-dark");
+      option.classList.add("btn-success");
+      resultado.innerHTML = "¡Ganaste!";
+    } else {
+      option.classList.remove("btn-outline-dark");
+      option.classList.add("btn-danger");
+      resultado.innerHTML = "Perdiste";
+    }
+  }
+
+  updateBarra(0);
+</script>
 {% endblock%}

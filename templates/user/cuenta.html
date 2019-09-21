@@ -1,24 +1,67 @@
-{% extends "user/base-user.html" %}
-
-{% block content %}
-<div class="container" style="border: 1px solid gray; border-radius: 30px; margin-top: 100px">
-        <div class="card-avatar" style="display: flex;
+{% extends "user/base-user.html" %} {% block content %}
+<div
+  class="container"
+  style="border: 1px solid gray; border-radius: 30px; margin-top: 100px"
+>
+  <div
+    class="card-avatar"
+    style="display: flex;
         justify-content: center;
-        align-items: center;">
-          <a href="#pablo">
-            <img class="img" src="../../static/img/d3.PNG" style="width: 200px; border-radius:50%; margin-top: -90px ">
-          </a>
-        </div>
-        <div class="card-body text-center" >
-          <h4 class="card-title">Alec Thompson</h4>
-          <h6 class="card-category text-gray"> <b>Posicion Ranking:</b>  #123 </h6>
-          <h6 class="card-category text-gray"><b>Puntuacion:</b> 2123 puntos </h6>
-          <h6 class="card-category text-gray"> <b>Categoria Favorita: </b> Deportes </h6>
-          <p class="card-description">
-            AAnye loves Kanye I love Rick Owens’ bed design but the back is...
-          </p>
-          <a href="/cuenta" class="btn btn-dark"><i class="fab fa-facebook"></i> Facebook</a>
-          <a href="/cuenta" class="btn btn-primary"><i class="fab fa-twitter"></i> Twitter</a>
-        </div>
+        align-items: center;"
+  >
+    <a href="#pablo">
+      <img
+        class="img"
+        src="../../static/img/d3.PNG"
+        style="width: 200px; height: 200px; border-radius:50%; margin-top: -90px "
+      />
+    </a>
+  </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">Alec Thompson</h5>
+    <h6 class="card-category text-gray"><b>Posicion Ranking:</b> #123</h6>
+    <h6 class="card-category text-gray"><b>Puntuacion:</b> 2123 puntos</h6>
+    <h6 class="card-category text-gray">
+      <b>Categoria Favorita: </b> Deportes
+    </h6>
+    <p class="card-description">
+      AAnye loves Kanye I love Rick Owens’ bed design but the back is...
+    </p>
+    <a href="/cuenta" class="btn btn-dark"
+      ><i class="fab fa-facebook"></i> Facebook</a
+    >
+    <a href="/cuenta" class="btn btn-primary"
+      ><i class="fab fa-twitter"></i> Twitter</a
+    >
+  </div>
+  <div class="card-body text-center mt-4">
+    <h5 class="card-title text-left">Premios adquiridos</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Fecha</th>
+          <th scope="col">Contenido</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>23/2/2019</td>
+          <td>Celular</td>
+          <td><span class="badge badge-secondary">Proceso</span></td>
+        </tr>
+        <tr>
+          <td>2/8/2019</td>
+          <td>Puntos extras</td>
+          <td><span class="badge badge-primary">Enviado</span></td>
+        </tr>
+        <tr>
+          <td>3/5/2019</td>
+          <td>Gift Card</td>
+          <td><span class="badge badge-success">Recibido</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 {% endblock %}
