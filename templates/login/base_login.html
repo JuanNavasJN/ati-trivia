@@ -17,10 +17,16 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ url_for('static' , filename = 'css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static' , filename = 'css/lang.css') }}" rel="stylesheet">
 
 </head>
 
 <body class="bg-gradient-primary">
+
+    <div class="lang">
+      <img src="/static/img/english.png" alt="english" id="lang-en">
+      <img src="/static/img/spanish.png" alt="spanish" id="lang-es">
+    </div>
 
     {% block content %} {% endblock %}
 
@@ -43,20 +49,7 @@
   <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.language.js') }}"></script>
   <script src="{{ url_for('static' , filename = 'i18n/en.js') }}"></script>
   <script src="{{ url_for('static' , filename = 'i18n/es.js') }}"></script>
-  
-  <script>
-    $.i18n().load({
-      en,
-      es
-    })
-    
-    $.i18n({
-      locale: 'es'
-    });
-
-    $('body').i18n();
-    
-  </script>
+  <script src="{{ url_for('static' , filename = 'js/lang.js') }}"></script>
 
 </body>
 

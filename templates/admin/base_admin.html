@@ -19,10 +19,16 @@
 
   <!-- Custom styles for this page -->
   <link href="{{ url_for('static' , filename = 'vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static' , filename = 'css/lang.css') }}" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
+
+    <div class="lang">
+      <img src="/static/img/english.png" alt="english" id="lang-en">
+      <img src="/static/img/spanish.png" alt="spanish" id="lang-es">
+    </div>
 
     {% block content %} {% endblock content %}
 
