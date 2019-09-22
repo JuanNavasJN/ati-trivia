@@ -13,25 +13,25 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Sorteos</h1>
+          <h1 class="h3 mb-2 text-gray-800" data-i18n="draws"></h1>
          
           <!-- Basic Card Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Agregar Sorteo</h6>
+              <h6 class="m-0 font-weight-bold text-primary" data-i18n="addDraw">Agregar Sorteo</h6>
             </div>
             <div class="card-body">
 
               <div class="row mt-2">
                 <div class="col">
-                  <label for="">Tipo</label>
+                  <label for="" data-i18n="type">Tipo</label>
                   <select name="" id="sorteo-type" class="form-control" onchange="handleChangeType()">
                     <option value="ranking">Ranking</option>
                     <option value="instant">Instantaneo</option>
                   </select>
                 </div>
                 <div class="col">
-                  <label for="">Premio</label>
+                  <label for="" data-i18n="award"></label>
                   <select name="" id="" class="form-control">
                     <option value="fisico">100 Puntos</option>
                     <option value="virtual">Xiaomi Redmi</option>
@@ -44,7 +44,7 @@
 
               <div class="row mt-2">
                 <div class="col">
-                  <label for="trivia">Descripcion</label>
+                  <label for="trivia" data-i18n="description">Descripcion</label>
                   <input type="text" class="form-control">
                 </div>
               </div>
@@ -61,22 +61,22 @@
                   </select>
                 </div>
                 <div class="col">
-                  <label for="trivia">Hora Inicio</label>
+                  <label for="trivia" data-i18n="startTime"></label>
                   <input type="time" class="form-control">
                 </div>
                 <div class="col">
-                  <label for="trivia">Hora Fin</label>
+                  <label for="trivia" data-i18n="endTime"></label>
                   <input type="time" class="form-control">
                 </div>
                 <div class="col">
-                  <label for="trivia">Frecuencia</label>
+                  <label for="trivia" data-i18n="frequency"></label>
                   <input type="time" class="form-control">
                 </div>
               </div>
 
               <div class="row mt-2" id="ranking-type">
                 <div class="col">
-                  <label for="trivia">Fecha y hora</label>
+                  <label for="trivia" data-i18n="datetime"></label>
                   <input type="datetime-local" class="form-control">
                 </div>
               </div>
@@ -87,7 +87,7 @@
                       <span class="icon text-white-50">
                         <i class="fas fa-check"></i>
                       </span>
-                      <span class="text" id="save-trivia">Guardar</span>
+                      <span class="text" id="save-trivia" data-i18n="save"></span>
                     </a>
                   </div>
               </div>
@@ -97,7 +97,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Sorteos</h6>
+              <h6 class="m-0 font-weight-bold text-primary" data-i18n="draws"></h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -105,9 +105,9 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Tipo</th>
-                      <th>Descripcion</th>
-                      <th>Premio</th>
+                      <th data-i18n="type">Tipo</th>
+                      <th data-i18n="description">Descripcion</th>
+                      <th data-i18n="award">Premio</th>
                       <th>Mod</th>
                     </tr>
                   </thead>

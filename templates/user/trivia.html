@@ -9,7 +9,7 @@
         <h1>El mejor del futbol</h1>
       </div>
       <div class="col-md-7 col-12 text-center">
-        <h6 class="text-muted">Tiempo restante</h6>
+        <h6 class="text-muted" data-i18n="timeRemaining"></h6>
         <div class="progress">
           <div
             id="barra"
@@ -28,8 +28,7 @@
       <div class="col-md-2 col-12"></div>
       <div class="col-md-8 col-12">
         <div id="pregunta" class="card text-center text-dark border-dark">
-          <div class="card-header">
-            Pregunta:
+          <div class="card-header" data-i18n="question">
           </div>
           <div class="card-body">
             <h2 class="card-title">
@@ -147,7 +146,9 @@
         timeOut = true;
         pregunta.parentNode.removeChild(pregunta);
         opciones.parentNode.removeChild(opciones);
-        resultado.innerHTML = "¡Se acabo el tiempo!";
+        //resultado.innerHTML = "¡Se acabo el tiempo!";
+        resultado.innerHTML = $.i18n( 'timeOver' );
+        
       } else if (optionSelected === true) {
         clearTimeout(tiempoBarra);
       } else {
@@ -169,11 +170,11 @@
     if (id === "op1") {
       option.classList.remove("btn-outline-dark");
       option.classList.add("btn-success");
-      resultado.innerHTML = "¡Ganaste!";
+      resultado.innerHTML = $.i18n( 'win' );
     } else {
       option.classList.remove("btn-outline-dark");
       option.classList.add("btn-danger");
-      resultado.innerHTML = "Perdiste";
+      resultado.innerHTML = $.i18n( 'lost' );
     }
   }
 

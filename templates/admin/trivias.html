@@ -18,18 +18,18 @@
           <!-- Basic Card Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Agregar Trivia</h6>
+              <h6 class="m-0 font-weight-bold text-primary" data-i18n="addTrivia"></h6>
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <label for="trivia">Pregunta</label>
+                  <label for="trivia" data-i18n="question"></label>
                   <textarea id="trivia" class="form-control" style="resize: none;"></textarea>
                 </div>
               </div>
               <div class="row mt-2">
                 <div class="col">
-                  <label for="category-trivia" >Categoria</label>
+                  <label for="category-trivia" data-i18n="category"></label>
                   <select class="form-control" id="category-trivia">
                     <option value="general">General</option>
                     <option value="deportes">Deportes</option>
@@ -38,12 +38,12 @@
                 </div>
 
                 <div class="col">
-                  <label for="duration-trivia">Duracion</label>
+                  <label for="duration-trivia" data-i18n="duration"></label>
                   <input type="number" id="duration-trivia" class="form-control"/>
                 </div>
 
                 <div class="col">
-                    <label for="duration-trivia">Opcion correcta</label>
+                    <label for="duration-trivia" data-i18n="correctOpt"></label>
                     <div>
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
@@ -68,7 +68,7 @@
 
               <div class="row mt-2">
                 <div class="col">
-                  <label for="image-trivia">Imagen</label>
+                  <label for="image-trivia" data-i18n="image"></label>
                   <input type="file" class="form-control-file" id="image-trivia"/>
                 </div>
                 <div class="col">
@@ -79,22 +79,22 @@
 
               <div class="row mt-2">
                 <div class="col">
-                  <label for="">Opcion 1</label>
+                  <label for=""><span data-i18n="option"></span> 1</label>
                   <input type="text" class="form-control">
                 </div>
                 <div class="col">
-                  <label for="">Opcion 2</label>
+                  <label for=""><span data-i18n="option"></span> 2</label>
                   <input type="text" class="form-control">
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
-                  <label for="">Opcion 3</label>
+                  <label for=""><span data-i18n="option"></span> 3</label>
                   <input type="text" class="form-control">
                 </div>
                 <div class="col">
-                  <label for="">Opcion 4</label>
+                  <label for=""><span data-i18n="option"></span> 4</label>
                   <input type="text" class="form-control">
                 </div>
               </div>
@@ -105,7 +105,7 @@
                       <span class="icon text-white-50">
                         <i class="fas fa-check"></i>
                       </span>
-                      <span class="text" id="save-trivia">Guardar</span>
+                      <span class="text" id="save-trivia" data-i18n="save"></span>
                     </a>
                   </div>
               </div>
@@ -125,13 +125,13 @@
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Pregunta</th>
-                      <th>Imagen</th>
+                      <th data-i18n="question"></th>
+                      <th data-i18n="image">Imagen</th>
                       <th>Audio</th>
-                      <th>Categoria</th>
-                      <th>Duracion</th>
-                      <th>Opcion</th>
-                      <th>Opciones</th>
+                      <th data-i18n="category">Categoria</th>
+                      <th data-i18n="duration">Duracion</th>
+                      <th data-i18n="option">Opcion</th>
+                      <th data-i18n="options">Opciones</th>
                       <th>Mod</th>
                     </tr>
                   </thead>

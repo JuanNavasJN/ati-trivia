@@ -29,7 +29,10 @@ const setLang = lang => {
     });
     $( '#repeatPassword' ).prop( {
       placeholder: $.i18n( 'repeatPassword' ),
-  });
+    });
+    $( '#name-category' ).prop( {
+      placeholder: $.i18n( 'categoryName' ),
+    });
   }
 
   $('#lang-en').click( _ => {

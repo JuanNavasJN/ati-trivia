@@ -61,7 +61,7 @@ def trivia():
 def ranking():
     return render_template('user/ranking.html')
 
-@app.route('/ayuda') 
+@app.route('/help') 
 def ayuda():
     return render_template('user/ayuda.html')
 

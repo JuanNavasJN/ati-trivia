@@ -56,6 +56,17 @@
 <!-- Page level custom scripts -->
 <script src="{{ url_for('static' , filename = 'js/demo/datatables-demo.js') }}"></script>
 
+ <!-- Source i18n -->
+ <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.messagestore.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.fallbacks.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.parser.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.emitter.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'js/i18n/jquery.i18n.language.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'i18n/en.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'i18n/es.js') }}"></script>
+ <script src="{{ url_for('static' , filename = 'js/lang.js') }}"></script>
+
 {% block script %}{% endblock %}
 
 </body>
