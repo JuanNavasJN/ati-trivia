@@ -1,0 +1,16 @@
+body{
+    background-color: #f1ccb9!important;
+}
+.navbar{
+    background-color: #a34a28!important;
+}
+.trivia.card-header, .trivia.card-body, .trivia.card-foote{
+    color: white!important;
+    background-color: #f58b54!important;
+}
+.nav-link span, .navbar-brand {
+    color: white!important;
+}
+.ranking-list a div div.small{
+    color: #212121!important;
+}

@@ -33,6 +33,70 @@
     <a href="/cuenta" class="btn btn-primary"
       ><i class="fab fa-twitter"></i> Twitter</a
     >
+    <br />
+    <a
+      class="mt-1 btn btn-secondary btn-sm dropdown-toggle text-white"
+      id="themeDropdown"
+      role="button"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <span
+        class="mr-2 d-none d-lg-inline  small"
+        data-i18n="theme"
+      ></span>
+    </a>
+    <!-- Dropdown - User Information -->
+    <div
+      class="dropdown-menu shadow animated--grow-in"
+      aria-labelledby="themeDropdown"
+    >
+      <a onclick="onChangeTheme('nm')" class="dropdown-item">
+        <i class="fas fa-circle fa-sm fa-fw mr-2 text-primary"></i>
+        <span
+          class="mr-2 d-none d-lg-inline  small"
+          data-i18n="theme1"
+        ></span>
+      </a>
+      <a onclick="onChangeTheme('dk')" class="dropdown-item">
+        <i class="fas fa-circle fa-sm fa-fw mr-2 text-dark"></i>
+        <span
+          class="mr-2 d-none d-lg-inline  small"
+          data-i18n="theme2"
+        ></span>
+      </a>
+      <a onclick="onChangeTheme('alt1')" class="dropdown-item">
+        <i
+          class="fas fa-circle fa-sm fa-fw mr-2"
+          style="color:rgb(190, 149, 228)"
+        ></i>
+        <span
+          class="mr-2 d-none d-lg-inline  small"
+          data-i18n="theme3"
+        ></span>
+      </a>
+      <a onclick="onChangeTheme('alt2')" class="dropdown-item">
+        <i
+          class="fas fa-circle fa-sm fa-fw mr-2"
+          style="color:rgb(221, 208, 150)"
+        ></i>
+        <span
+          class="mr-2 d-none d-lg-inline  small"
+          data-i18n="theme4"
+        ></span>
+      </a>
+      <a onclick="onChangeTheme('alt3')" class="dropdown-item">
+        <i
+          class="fas fa-circle fa-sm fa-fw mr-2"
+          style="color:rgb(177, 215, 233)"
+        ></i>
+        <span
+          class="mr-2 d-none d-lg-inline  small"
+          data-i18n="theme5"
+        ></span>
+      </a>
+    </div>
   </div>
   <div class="card-body text-center mt-4">
     <h5 class="card-title text-left">Premios adquiridos</h5>
@@ -64,4 +128,55 @@
     </table>
   </div>
 </div>
+<script>
+  function onChangeTheme(theme) {
+    var themeLink = document.getElementById("temas");
+    switch (theme) {
+      case "nm":
+        themeLink.href =
+          "{{ url_for('static' , filename = 'css/temas/normal.css') }}";
+        localStorage.setItem(
+          "theme",
+          "{{ url_for('static' , filename = 'css/temas/normal.css') }}"
+        );
+        break;
+      case "dk":
+        themeLink.href =
+          "{{ url_for('static' , filename = 'css/temas/oscuro.css') }}";
+        localStorage.setItem(
+          "theme",
+          "{{ url_for('static' , filename = 'css/temas/oscuro.css') }}"
+        );
+
+        break;
+      case "alt1":
+        themeLink.href =
+          "{{ url_for('static' , filename = 'css/temas/alternativo1.css') }}";
+        localStorage.setItem(
+          "theme",
+          "{{ url_for('static' , filename = 'css/temas/alternativo1.css') }}"
+        );
+
+        break;
+      case "alt2":
+        themeLink.href =
+          "{{ url_for('static' , filename = 'css/temas/alternativo2.css') }}";
+        localStorage.setItem(
+          "theme",
+          "{{ url_for('static' , filename = 'css/temas/alternativo2.css') }}"
+        );
+
+        break;
+      case "alt3":
+        themeLink.href =
+          "{{ url_for('static' , filename = 'css/temas/alternativo3.css') }}";
+        localStorage.setItem(
+          "theme",
+          "{{ url_for('static' , filename = 'css/temas/alternativo3.css') }}"
+        );
+
+        break;
+    }
+  }
+</script>
 {% endblock %}
