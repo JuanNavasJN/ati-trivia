@@ -1,4 +1,18 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, jsonify
+from controllers.main import *
+import pymongo
+
+# DB -----------------------------------
+
+URI = "mongodb://admin:DY4B2kiERHj9Vl4I@cluster0-shard-00-00-55sxd.mongodb.net:27017,cluster0-shard-00-01-55sxd.mongodb.net:27017,cluster0-shard-00-02-55sxd.mongodb.net:27017/admin?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
+
+# URI = "mongodb://localhost:27017"
+
+client = pymongo.MongoClient(URI)
+
+db = client['atrivia'] # Se selecciona la base de datos
+
+#-----------------------------------
 
 app = Flask(__name__)
 
@@ -46,7 +60,6 @@ def adminsorteos():
 def adminReglas():
     return render_template('admin/reglas.html')
    
-
 #Rutas para el Usuario 
 
 @app.route('/home') 
@@ -69,6 +82,33 @@ def ayuda():
 def cuenta():
     return render_template('user/cuenta.html')
 
+# ----------------------------- API ------------------------------
+
+# Categories
+@app.route('/api/categories', methods = ['GET']) 
+def api_categories():
+    return getAllCategories()
+
+@app.route('/api/category/<id>', methods = ['GET']) 
+def api_category(id):
+    return getOneCategory(id)
+
+@app.route('/api/category', methods = ['POST']) 
+def api_new_category():
+    return createCategory(request.get_json(force=True))
+
+# Trivias
+@app.route('/api/trivias', methods = ['GET']) 
+def api_trivias():
+    return getAllTrivias()
+
+@app.route('/api/trivia/<id>', methods = ['GET']) 
+def api_trivia(id):
+    return getOneTrivia(id)
+
+@app.route('/api/trivia', methods = ['POST']) 
+def api_new_trivia():
+    return createTrivia(request.get_json(force=True))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
