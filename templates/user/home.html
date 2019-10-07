@@ -5,127 +5,67 @@
     <h1 class=" text-center" data-i18n="categories"></h1>
     <div class="container mt-4 mb-4">
       <div class="row">
-        <div class="col-md-6 col-12">
-          <div class="card mb-3 border-dark">
-            <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../../static/img/deporte.png" class="card-img category-img" alt="deportes">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h1 class="card-title">Deportes</h1>
-                  <span class="text-muted">Ultimo campeon: Username</span>
-                  <br>
-                  <small class="text-muted">45 nuevas preguntas</small>
-                  <p class="mt-4">
-                    <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                  </p>
+        {% if categories %}
+          {% for category in categories %}
+            <div class="col-md-6 col-12">
+              <div class="card mb-3 border-dark">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="{{ category.image_url }}" class="card-img category-img" alt="{{ category.name }}">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <h1 class="card-title">{{ category.name }}</h1>
+                      <span class="text-muted">Ultimo campeon: Username</span>
+                      <br>
+                      <small class="text-muted">45 nuevas preguntas</small>
+                      <p class="mt-4">
+                        <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-12">
-          <div class="card mb-3 border-dark">
-            <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../../static/img/comida.jpg" class="card-img category-img" alt="deportes">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h1 class="card-title">Comida</h1>
-                  <span class="text-muted">Ultimo campeon: Username</span>
-                  <br>
-                  <small class="text-muted">45 nuevas preguntas</small>
-                  <p class="mt-4">
-                    <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-12">
-          <div class="card mb-3 border-dark">
-            <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../../static/img/marcas.PNG" class="card-img category-img" alt="deportes">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h1 class="card-title">Marcas</h1>
-                  <span class="text-muted">Ultimo campeon: Username</span>
-                  <br>
-                  <small class="text-muted">45 nuevas preguntas</small>
-                  <p class="mt-4">
-                    <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-12">
-          <div class="card mb-3 border-dark">
-            <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../../static/img/animales.jpg" class="card-img category-img" alt="deportes">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h1 class="card-title">Animales</h1>
-                  <span class="text-muted">Ultimo campeon: Username</span>
-                  <br>
-                  <small class="text-muted">45 nuevas preguntas</small>
-                  <p class="mt-4">
-                    <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-12">
-          <div class="card mb-3 border-dark">
-            <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../../static/img/musica.png" class="card-img category-img" alt="deportes">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h1 class="card-title">Musica</h1>
-                  <span class="text-muted">Ultimo campeon: Username</span>
-                  <br>
-                  <small class="text-muted">45 nuevas preguntas</small>
-                  <p class="mt-4">
-                    <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-12">
-          <div class="card mb-3 border-dark">
-            <div class="row no-gutters">
-              <div class="col-4">
-                <img src="../../static/img/historia.jpg" class="card-img category-img" alt="deportes">
-              </div>
-              <div class="col-8">
-                <div class="card-body">
-                  <h1 class="card-title">Historia</h1>
-                  <span class="text-muted">Ultimo campeon: Username</span>
-                  <br>
-                  <small class="text-muted">45 nuevas preguntas</small>
-                  <p class="mt-4">
-                    <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          {% endfor %}
+        {% else %}
+        <h2 style="text-align: center">No hay categorias creadas aún.</h2>
+        {% endif %}
       </div>
     </div>
+  }
+  <script type="text/javascript">
+    async function loadCategories(){
+      let response = await fetch('/api/categories')
+      let data = await response.json()
+      let html = ''
+      data.forEach(categoria => {
+        html += `
+          <div class="col-md-6 col-12">
+            <div class="card mb-3 border-dark">
+              <div class="row no-gutters">
+                <div class="col-4">
+                  <img src="${categoria.image_url}">
+                </div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <h1 class="card-title">${categoria.name}</h1>
+                    <span class="text-muted">Ultimo campeon: Username</span>
+                    <br>
+                    <small class="text-muted">45 nuevas preguntas</small>
+                    <p class="mt-4">
+                      <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      })
+    }
+
+    loadCategories()
+  </script>
   </main>
 {% endblock %}

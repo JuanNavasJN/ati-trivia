@@ -24,7 +24,7 @@ def createCategory(data):
 
     category = {
         'name': data['name'],
-        'image_url': 'https://image.com' 
+        'image_url': '../../static/img/marcas.png' 
     }
     Categories.insert(category)
     category_db = Categories.find_one(category)

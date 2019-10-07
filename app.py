@@ -64,7 +64,9 @@ def adminReglas():
 
 @app.route('/home') 
 def home():
-    return render_template('user/home.html')
+    categories = list(db.category.find({}))
+    print(categories)
+    return render_template('user/home.html', categories=categories)
 
 @app.route('/trivia') 
 def trivia():
