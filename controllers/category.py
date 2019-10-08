@@ -20,11 +20,21 @@ def getAllCategories():
         mimetype='application/json'
     )
 
+def deleteCategory(id):
+    Categories.delete_one({'_id': ObjectId(id)})
+    categories_db = Categories.find({})
+
+    return Response(
+        dumps(categories_db),
+        mimetype='application/json'
+    )
+
 def createCategory(data):
 
     category = {
         'name': data['name'],
-        'image_url': '../../static/img/marcas.png' 
+        # 'image_url': '../../static/img/marcas.png' 
+        'image': data['image'],
     }
     Categories.insert(category)
     category_db = Categories.find_one(category)

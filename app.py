@@ -18,7 +18,8 @@ app = Flask(__name__)
 
 @app.route('/') 
 def index():
-    return render_template('user/home.html')
+    categories = list(db.category.find({}))
+    return render_template('user/home.html', categories=categories)
 
 @app.route('/login') 
 def login():
@@ -42,7 +43,8 @@ def admindashboard():
 
 @app.route('/admin/categorias') 
 def admincategorias():
-    return render_template('admin/categorias.html')
+    categories = list(db.category.find({}))
+    return render_template('admin/categorias.html', categories=categories)
 
 @app.route('/admin/trivias') 
 def admintrivias():
@@ -65,7 +67,6 @@ def adminReglas():
 @app.route('/home') 
 def home():
     categories = list(db.category.find({}))
-    print(categories)
     return render_template('user/home.html', categories=categories)
 
 @app.route('/trivia') 
@@ -98,6 +99,10 @@ def api_category(id):
 @app.route('/api/category', methods = ['POST']) 
 def api_new_category():
     return createCategory(request.get_json(force=True))
+
+@app.route('/api/category/<id>', methods = ['DELETE']) 
+def api_delete_category(id):
+    return deleteCategory(id)
 
 # Trivias
 @app.route('/api/trivias', methods = ['GET']) 
