@@ -42,7 +42,8 @@ def admindashboard():
 
 @app.route('/admin/categorias') 
 def admincategorias():
-    return render_template('admin/categorias.html')
+    categories = list(db.category.find({}))
+    return render_template('admin/categorias.html', categories=categories)
 
 @app.route('/admin/trivias') 
 def admintrivias():
@@ -65,7 +66,6 @@ def adminReglas():
 @app.route('/home') 
 def home():
     categories = list(db.category.find({}))
-    print(categories)
     return render_template('user/home.html', categories=categories)
 
 @app.route('/trivia') 
