@@ -66,7 +66,7 @@ def registerAuth():
           "email": request.form.get('inputEmail', ''),
           "password": request.form.get('inputPassword', ''),
           "admin": False,
-          "nombre": request.form.get('inputFirstNam', ''),
+          "nombre": request.form.get('inputFirstName', ''),
           "apellido": request.form.get('inputLastName', ''),
           "ranking": 0,
           "scoare": 0,
