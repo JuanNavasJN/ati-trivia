@@ -168,7 +168,7 @@
     }
     var option = document.getElementById(id);
     // quitando el mensaje
-    if (id === "op1") {
+    if (id === "op{{ trivias[0].correct }}") {
       option.classList.remove("btn-outline-dark");
       option.classList.add("btn-success");
     } else {
