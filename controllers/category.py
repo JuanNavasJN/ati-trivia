@@ -6,7 +6,7 @@ from flask import Response
 Categories = db.category
 
 def getOneCategory(id):
-    print(id)
+    # print(id)
     category = Categories.find_one({'_id': ObjectId(id)})
     return Response(
         dumps(category),

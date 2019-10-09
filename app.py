@@ -48,15 +48,21 @@ def admincategorias():
 
 @app.route('/admin/trivias') 
 def admintrivias():
-    return render_template('admin/trivias.html')
+    categories = list(db.category.find({}))
+    trivias = list(db.trivias.find({}))
+    return render_template('admin/trivias.html', categories=categories, trivias=trivias)
 
 @app.route('/admin/premios') 
 def adminpremios():
-    return render_template('admin/premios.html')
+    premios = list(db.premios.find({}))
+    return render_template('admin/premios.html', premios=premios)
 
 @app.route('/admin/sorteos') 
 def adminsorteos():
-    return render_template('admin/sorteos.html')
+    sorteos = list(db.sorteos.find({}))
+    premios = list(db.premios.find({}))
+    trivias = list(db.trivias.find({}))
+    return render_template('admin/sorteos.html', sorteos=sorteos, premios=premios, trivias=trivias)
 
 @app.route('/admin/reglas') 
 def adminReglas():
@@ -124,6 +130,45 @@ def api_trivia(id):
 @app.route('/api/trivia', methods = ['POST']) 
 def api_new_trivia():
     return createTrivia(request.get_json(force=True))
+
+@app.route('/api/trivia/<id>', methods = ['DELETE']) 
+def api_delete_trivia(id):
+    return deleteTrivia(id)
+
+# Premios
+@app.route('/api/premios', methods = ['GET'])
+def api_premios():
+    return getAllPremios()
+
+@app.route('/api/premios/nuevo', methods = ['POST'])
+def api_new_premio():
+    return createPremio(request.get_json(force=True))
+
+@app.route('/api/premios/borrar', methods = ['POST'])
+def api_delete_premio():
+    return deletePremio(request.get_json(force=True))
+
+@app.route('/api/premios/editar', methods = ['POST'])
+def api_edit_premio():
+    return editPremio(request.get_json(force=True))
+
+
+# Sorteos
+@app.route('/api/sorteos', methods = ['GET'])
+def api_sorteos():
+    return getAllSorteos()
+
+@app.route('/api/sorteos/nuevo', methods = ['POST'])
+def api_new_sorteo():
+    return createSorteo(request.get_json(force=True))
+
+@app.route('/api/sorteos/borrar', methods = ['POST'])
+def api_delete_sorteo():
+    return deleteSorteo(request.get_json(force=True))
+
+@app.route('/api/sorteos/editar', methods = ['POST'])
+def api_edit_sorteo():
+    return editSorteo(request.get_json(force=True))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
