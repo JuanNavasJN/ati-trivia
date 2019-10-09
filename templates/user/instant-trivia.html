@@ -4,11 +4,7 @@
 <main>
   <div class="container mt-3 mb-3">
     <div class="row">
-      <div class="col-md-5  col-12">
-        <h6 class="text-muted">DEPORTES</h6>
-        <h1>El mejor del futbol</h1>
-      </div>
-      <div class="col-md-7 col-12 text-center">
+      <div class="col-md-12 col-12 text-center">
         <h6 id="extraPoints" class="text-muted" data-i18n="timeRemaining"></h6>
         <div class="progress">
           <div
@@ -30,11 +26,11 @@
         <div id="pregunta" class="card text-center text-dark border-dark">
           <div class="trivia card-body">
             <h2 class="card-title">
-              ¿Cual es el jugador de futbol con mas goles en mundiales?
+              ¿Pelicula mas famosa?
             </h2>
           </div>
           <div class="trivia card-foote text-muted">
-            Responde por 150 puntos!
+            Responde esta trivia instantanea para ganar una nueva nevera
           </div>
         </div>
         <div id="resultado" class="text-center display-1 "></div>
@@ -55,7 +51,7 @@
                   onClick="onSelect('op1')"
                   class="btn btn-outline-dark btn-block"
                 >
-                  Cristiano Ronaldo
+                  Titanic
                 </button>
               </div>
             </div>
@@ -75,7 +71,7 @@
                   onClick="onSelect('op2')"
                   class="btn  btn-outline-dark btn-block"
                 >
-                  Messi
+                  Shrek
                 </button>
               </div>
             </div>
@@ -95,7 +91,7 @@
                   onClick="onSelect('op3')"
                   class="btn btn-outline-dark btn-block"
                 >
-                  Neymar
+                  Dumbo
                 </button>
               </div>
             </div>
@@ -115,7 +111,7 @@
                   onClick="onSelect('op4')"
                   class="btn btn-outline-dark btn-block"
                 >
-                  Bale
+                  Tarzan
                 </button>
               </div>
             </div>
@@ -163,9 +159,19 @@
     if (id === "op1") {
       option.classList.remove("btn-outline-dark");
       option.classList.add("btn-success");
+      Swal.fire({
+        type: "success",
+        showConfirmButton: false,
+        timer: 800
+      });
     } else {
       option.classList.remove("btn-outline-dark");
       option.classList.add("btn-danger");
+      Swal.fire({
+        type: "error",
+        showConfirmButton: false,
+        timer: 800
+      });
     }
   }
 
