@@ -17,3 +17,8 @@
     width: 65px;
     height: 65px;
 }
+
+
+.sorteo-border{
+    border-bottom: 1px solid grey;
+}

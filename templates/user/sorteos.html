@@ -1,0 +1,33 @@
+{% extends "user/base-user.html" %} {% block content %}
+<div class="container mb-4">
+  <h1 class="text-center my-4">
+    Sorteos activos
+  </h1>
+  <div class=" shadow animated--grow-in show" style="border-radius: 30px;">
+    <span class="ranking-list">
+      <a
+        class="dropdown-item d-flex align-items-center text-center sorteo-border"
+        href="#"
+      >
+        <div class="font-weight-bold">
+          <div class="text-truncate">
+            <h3 style="display:inline-block;">Sorteo numero 19!</h3>
+            <br />
+            <h5 style="display:inline-block;">Gana un telefono samsung!</h5>
+            <br />
+            <h6 style="display:inline-block;" class="small">
+              Ganan los tres primeros del ranking!
+            </h6>
+          </div>
+        </div>
+      </a>
+
+      <a
+        class="dropdown-item text-center small text-gray-500"
+        href="#"
+        data-i18n="viewMore"
+      ></a>
+    </span>
+  </div>
+</div>
+{% endblock %}

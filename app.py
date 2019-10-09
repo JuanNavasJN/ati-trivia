@@ -1,5 +1,4 @@
 from flask import Flask, render_template, redirect, request, jsonify
-from controllers.main import *
 import pymongo
 
 # DB -----------------------------------
@@ -13,6 +12,7 @@ client = pymongo.MongoClient(URI)
 db = client['atrivia'] # Se selecciona la base de datos
 
 #-----------------------------------
+from controllers.main import *
 
 app = Flask(__name__)
 
@@ -84,6 +84,14 @@ def ayuda():
 @app.route('/cuenta') 
 def cuenta():
     return render_template('user/cuenta.html')
+
+@app.route('/sorteos') 
+def sorteos():
+    return render_template('user/sorteos.html')
+
+@app.route('/trivia-instantanea') 
+def triviaInstantanea():
+    return render_template('user/instant-trivia.html')
 
 # ----------------------------- API ------------------------------
 

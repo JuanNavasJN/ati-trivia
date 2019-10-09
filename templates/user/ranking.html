@@ -1,78 +1,105 @@
 {% extends "user/base-user.html" %} {% block content %}
 <div class="container mb-4">
+  <h1 class="text-center my-4">
+    Ranking
+  </h1>
+  <div class="row">
+    <div class="col text-center">
+      <form class="form-inline ml-2 mb-4">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          id="searchPlaceh"
+          aria-label="Search"
+        />
+        <button
+          class="btn btn-dark bg-black my-2 my-sm-0"
+          type="submit"
+          data-i18n="search"
+        ></button>
+      </form>
+    </div>
+  </div>
   <div class=" shadow animated--grow-in show" style="border-radius: 30px;">
-    <h1 class="text-center my-4">
-      Ranking
-    </h1>
     <span class="ranking-list">
-    <a class="dropdown-item d-flex align-items-center" href="#">
-      <div class="dropdown-list-image mr-3">
-        <img
-          class="rounded-circle"
-          src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
-          alt=""
-        />
-        <div class="status-indicator bg-success"></div>
-      </div>
-      <div class="font-weight-bold">
-        <div class="text-truncate">
-          <h3 style="display:inline-block;">Emily Caputo #1</h3>
+      <a class="dropdown-item d-flex align-items-center" href="#">
+        <div class="dropdown-list-image mr-3">
+          <img
+            class="rounded-circle"
+            src="https://source.unsplash.com/fn_BT9fwg_E/60x60"
+            alt=""
+          />
+          <div class="status-indicator bg-success"></div>
         </div>
-        <div class="small text-gray-500">Venezuela · 58453 <span data-i18n="points"></span></div>
-      </div>
-    </a>
-    <a class="dropdown-item d-flex align-items-center" href="#">
-      <div class="dropdown-list-image mr-3">
-        <img
-          class="rounded-circle"
-          src="https://source.unsplash.com/CS2uCrpNzJY/60x60"
-          alt=""
-        />
-        <div class="status-indicator bg-warning"></div>
-      </div>
-      <div class="font-weight-bold">
-        <div class="text-truncate">
-          <h3 style="display:inline-block;">Morgan Alvarez #2</h3>
+        <div class="font-weight-bold">
+          <div class="text-truncate">
+            <h3 style="display:inline-block;">Emily Caputo #1</h3>
+          </div>
+          <div class="small text-gray-500">
+            Venezuela · 58453 <span data-i18n="points"></span>
+          </div>
         </div>
-        <div class="small text-gray-500">Colombia · 54545 <span data-i18n="points"></span></div>
-      </div>
-    </a>
-    <a class="dropdown-item d-flex align-items-center" href="#">
-      <div class="dropdown-list-image mr-3">
-        <img
-          class="rounded-circle"
-          src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-          alt=""
-        />
-        <div class="status-indicator bg-success"></div>
-      </div>
-      <div class="font-weight-bold">
-        <div class="text-truncate">
-          <h3 style="display:inline-block;">El perrito #3</h3>
+      </a>
+      <a class="dropdown-item d-flex align-items-center" href="#">
+        <div class="dropdown-list-image mr-3">
+          <img
+            class="rounded-circle"
+            src="https://source.unsplash.com/CS2uCrpNzJY/60x60"
+            alt=""
+          />
+          <div class="status-indicator bg-warning"></div>
         </div>
-        <div class="small text-gray-500">Brasil · 52552 <span data-i18n="points"></span></div>
-      </div>
-    </a>
-    <a class="dropdown-item d-flex align-items-center" href="#">
-      <div class="dropdown-list-image mr-3">
-        <img
-          class="rounded-circle"
-          src="https://source.unsplash.com/random/60x60"
-          alt=""
-        />
-        <div class="status-indicator bg-success"></div>
-      </div>
-      <div class="font-weight-bold">
-        <div class="text-truncate">
-          <h3 style="display:inline-block;">Usuario</h3>
+        <div class="font-weight-bold">
+          <div class="text-truncate">
+            <h3 style="display:inline-block;">Morgan Alvarez #2</h3>
+          </div>
+          <div class="small text-gray-500">
+            Colombia · 54545 <span data-i18n="points"></span>
+          </div>
         </div>
-        <div class="small text-gray-500">Brasil · 52552 <span data-i18n="points"></span></div>
-      </div>
-    </a>
+      </a>
+      <a class="dropdown-item d-flex align-items-center" href="#">
+        <div class="dropdown-list-image mr-3">
+          <img
+            class="rounded-circle"
+            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+            alt=""
+          />
+          <div class="status-indicator bg-success"></div>
+        </div>
+        <div class="font-weight-bold">
+          <div class="text-truncate">
+            <h3 style="display:inline-block;">El perrito #3</h3>
+          </div>
+          <div class="small text-gray-500">
+            Brasil · 52552 <span data-i18n="points"></span>
+          </div>
+        </div>
+      </a>
+      <a class="dropdown-item d-flex align-items-center" href="#">
+        <div class="dropdown-list-image mr-3">
+          <img
+            class="rounded-circle"
+            src="https://source.unsplash.com/random/60x60"
+            alt=""
+          />
+          <div class="status-indicator bg-success"></div>
+        </div>
+        <div class="font-weight-bold">
+          <div class="text-truncate">
+            <h3 style="display:inline-block;">Usuario</h3>
+          </div>
+          <div class="small text-gray-500">
+            Brasil · 52552 <span data-i18n="points"></span>
+          </div>
+        </div>
+      </a>
 
-    <a class="dropdown-item text-center small text-gray-500" href="#"
-    data-i18n="viewMore"></a
-    >
+      <a
+        class="dropdown-item text-center small text-gray-500"
+        href="#"
+        data-i18n="viewMore"
+      ></a>
     </span>
   </div>
 </div>
