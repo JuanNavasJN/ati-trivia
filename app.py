@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, redirect, request, jsonify
-=======
-from flask import Flask, render_template, redirect, request, jsonify,request, session, abort , flash , redirect, url_for
-from controllers.main import *
->>>>>>> 3e1fb96cfc8451cbf5bc69977b9409c138139991
 import pymongo
 import os
 import json
@@ -151,7 +146,6 @@ def cuenta():
         return redirect(url_for('login'))
     return render_template('user/cuenta.html')
 
-<<<<<<< HEAD
 @app.route('/sorteos') 
 def sorteos():
     return render_template('user/sorteos.html')
@@ -159,10 +153,6 @@ def sorteos():
 @app.route('/trivia-instantanea') 
 def triviaInstantanea():
     return render_template('user/instant-trivia.html')
-=======
-
-
->>>>>>> 3e1fb96cfc8451cbf5bc69977b9409c138139991
 
 # ----------------------------- API ------------------------------
 
