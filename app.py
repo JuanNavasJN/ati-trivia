@@ -1,5 +1,4 @@
-from flask import Flask, render_template, redirect, request, jsonify,request, session, abort , flash , redirect, url_for
-from controllers.main import *
+from flask import Flask, render_template, redirect, request, jsonify
 import pymongo
 import os
 import json
@@ -17,6 +16,7 @@ client = pymongo.MongoClient(URI)
 db = client['atrivia'] # Se selecciona la base de datos
 
 #-----------------------------------
+from controllers.main import *
 
 app = Flask(__name__)
 
@@ -147,8 +147,13 @@ def cuenta():
         return redirect(url_for('login'))
     return render_template('user/cuenta.html')
 
+@app.route('/sorteos') 
+def sorteos():
+    return render_template('user/sorteos.html')
 
-
+@app.route('/trivia-instantanea') 
+def triviaInstantanea():
+    return render_template('user/instant-trivia.html')
 
 # ----------------------------- API ------------------------------
 
