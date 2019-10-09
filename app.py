@@ -35,6 +35,7 @@ def loginAuth():
     user = db.user.find_one({"email": request.form.get('inputEmail','')})
 
     if user == None:
+        flash("Correo o contraseña invalido")
         return redirect(url_for('login'))
     else:
         user = json.dumps(user, sort_keys=True, indent=4, default=json_util.default)
