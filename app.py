@@ -87,7 +87,7 @@ def forgotPassword():
     
 @app.route('/admin')
 def admin():
-    if not session.get('logged_in') or not session.get('admin') == 'True':
+    if not session.get('logged_in') or not session.get('admin') == True:
         return redirect(url_for('login'))
     return redirect('/admin/categorias', code=302)
 
