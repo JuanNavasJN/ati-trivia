@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, jsonify,request, session, abort , flash , redirect, url_for
+from flask import Flask, render_template, redirect, request, jsonify,request, session, abort , flash , redirect, url_for, Response
 import pymongo
 import os
 import json
@@ -132,6 +132,12 @@ def adminReglas():
         return redirect(url_for('login'))
     return render_template('admin/reglas.html')
    
+@app.route('/admin/users') 
+def adminUsers():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    users = list(db.user.find({}))
+    return render_template('admin/users.html', users=users)
 #Rutas para el Usuario 
 
 @app.route('/home') 
@@ -254,6 +260,16 @@ def api_delete_sorteo():
 @app.route('/api/sorteos/editar', methods = ['POST'])
 def api_edit_sorteo():
     return editSorteo(request.get_json(force=True))
+
+@app.route('/api/admin/<id>', methods = ['PUT'])
+def api_admin(id):
+    data = request.get_json(force=True)
+    db.user.update_one({'_id': ObjectId(id)}, {"$set" : {'admin': data['admin']}})
+    return Response(
+        'success',
+        mimetype='application/json'
+    )
+
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)

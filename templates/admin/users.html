@@ -1,0 +1,170 @@
+{% extends "admin/index.html" %}
+
+{% block main_content %}
+
+      <!-- Main Content -->
+      <div id="content">
+
+        {% block topbar %}
+            {% include 'admin/topbar.html' %}
+        {% endblock %}
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+         
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Apellido</th>
+                      <th>Email</th>
+                      <th>Mod</th>
+                    </tr>
+                  </thead>
+                  <!-- <tfoot>
+                    <tr>
+                      <th>#</th>
+                      <th>Nombre</th>
+                    </tr>
+                  </tfoot> -->
+                  <tbody id="categories">
+                      {% for user in users %}
+                        <tr>
+                          <!-- _id: {$oid: "5d9be32d9692c92bd25aed1c"} --> 
+                          <td style="max-width: 50px">{{ user['_id']  }}</td>
+                          <td>{{ user.nombre }}</td>
+                          <td>{{ user.apellido }}</td>
+                          <td>{{ user.email }}</td>
+                          <td>
+                              <label for="">Admin</label>
+
+                              {% if user.admin %}
+                                <input type="checkbox" checked="{{ user.admin|tojson }}" class="admin" id="{{ user['_id'] }}"/>
+                              {% else %}
+                                <input type="checkbox" class="admin" id="{{ user['_id'] }}"/>
+                              {% endif %}
+ 
+                          </td>
+                        </tr>
+                      {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <input type="text" id="name-category" class="form-control" value="categoria"/>
+              </div>
+              <div class="modal-footer">
+                <a href="#" class="btn btn-secondary btn-icon-split" data-dismiss="modal">
+                  <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                  </span>
+                  <span class="text">Cerrar</span>
+                </a>
+                <a href="#" class="btn btn-success btn-icon-split" data-dismiss="modal">
+                  <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <span class="text" id="save-category">Guardar</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+{% endblock %}
+
+{% block script %}
+
+  <script>
+      let count = 0;
+
+      const toBase64 = file => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+      });
+
+
+      $('.admin').click(e => {
+          fetch('/api/admin/' + e.target.id, {
+            method: 'PUT',
+            body: JSON.stringify({admin: e.target.checked})
+          })
+            .then(data => data.text())
+            .then(res => {
+                console.log(res)
+              //location.replace('/admin/users')
+            })
+
+      })
+
+      $('.btn-delete').click(e => {
+        const id = e.target.id
+        console.log(id)
+        fetch('/api/category/' + id, {
+          method: 'DELETE',
+        })
+          .then(data => data.json())
+          .then(res => {
+            location.replace('/admin/categorias')
+          })
+      })
+
+      $('#save-category').click( async e => {
+        e.preventDefault()
+        let category = $('#name-category').val()
+
+        const file = document.querySelector('#category-image').files[0];
+        const file64 = await toBase64(file);
+
+        const data = {
+          name: category,
+          image: file64
+        }
+
+        $('#btn-save').toggleClass('btn-info', 'btn-success')
+
+        fetch('/api/category', {
+          method: 'POST',
+          body: JSON.stringify(data)
+        })
+          .then(data => data.json())
+          .then(res => {
+            location.replace('/admin/categorias')
+          })
+      
+      })
+     
+  </script>
+
+{% endblock %}
