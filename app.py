@@ -65,7 +65,7 @@ def registerAuth():
       dic = {
           "email": request.form.get('inputEmail', ''),
           "password": request.form.get('inputPassword', ''),
-          "admin": "0",
+          "admin": False,
           "nombre": request.form.get('inputFirstNam', ''),
           "apellido": request.form.get('inputLastName', ''),
           "ranking": 0,
