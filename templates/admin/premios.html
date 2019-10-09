@@ -25,21 +25,21 @@
               <div class="row mt-2">
                 <div class="col">
                   <label for="" data-i18n="type"></label>
-                  <select name="" id="" class="form-control">
+                  <select name="" id="tipo-premio" class="form-control">
                     <option value="fisico">Fisico</option>
                     <option value="virtual">Virtual</option>
                   </select>
                 </div>
                 <div class="col">
                   <label for="" data-i18n="points"></label>
-                  <input type="number" class="form-control">
+                  <input type="number" id="puntos-premio" class="form-control">
                 </div>
               </div>
 
               <div class="row">
                 <div class="col">
                   <label for="trivia" data-i18n="description"></label>
-                  <input type="text" class="form-control">
+                  <input type="text" id="descripcion" class="form-control">
                 </div>
               </div>
 
@@ -80,20 +80,22 @@
                     </tr>
                   </tfoot> -->
                   <tbody id="categories">
-                    <tr>
-                      <td>0</td>
-                      <td>Virtual</td>
-                      <td>100 puntos</td>
-                      <td>100</td>
-                      <td>
-                          <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModal"> 
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                      </td>
-                    </tr>
+                    {% for premio in premios %}
+                      <tr>
+                        <td>{{ premio._id }}</td>
+                        <td>{{ premio.tipo }}</td>
+                        <td>{{ premio.descripcion }}</td>
+                        <td>{{ premio.puntos }}</td>
+                        <td>
+                            <a href="#" class="btn btn-info btn-circle btn-sm" onclick="editPremio('{{ premio._id }}','{{ premio.tipo }}', '{{ premio.descripcion }}', '{{ premio.puntos }}')" data-toggle="modal" data-target="#editModal"> 
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="#" onclick="deletePremio('{{ premio._id }}')" class="btn btn-danger btn-circle btn-sm">
+                              <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                      </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
@@ -117,24 +119,25 @@
                 </button>
               </div>
               <div class="modal-body">
+                <input type="hidden" id="edit-id">
                 <div class="row mt-2">
                   <div class="col">
                     <label for="">Tipo</label>
-                    <select name="" id="" class="form-control">
+                    <select name="" id="edit-tipo" class="form-control">
                       <option value="fisico">Fisico</option>
                       <option value="virtual">Virtual</option>
                     </select>
                   </div>
                   <div class="col">
                     <label for="">Puntos</label>
-                    <input type="number" class="form-control">
+                    <input type="number" id="edit-puntos" class="form-control">
                   </div>
                 </div>
   
                 <div class="row">
                   <div class="col">
                     <label for="trivia">Descripcion</label>
-                    <input type="text" class="form-control">
+                    <input type="text" id="edit-descripcion" class="form-control">
                   </div>
                 </div>
               </div>
@@ -149,7 +152,7 @@
                   <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                   </span>
-                  <span class="text" id="save-category">Guardar</span>
+                  <span class="text" id="save-premio">Guardar</span>
                 </a>
               </div>
             </div>
@@ -161,7 +164,57 @@
 {% block script %}
 
   <script>
-     
+     $('#save-trivia').click(function(){
+      let premio = {
+        tipo: $('#tipo-premio').val(),
+        puntos: $('#puntos-premio').val(),
+        descripcion: $('#descripcion').val()
+      }
+      fetch('/api/premios/nuevo', {
+        method: 'POST',
+        body: JSON.stringify(premio)
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/premios')
+      })
+     })
+
+     function deletePremio(id){
+      fetch('/api/premios/borrar', {
+        method: 'POST',
+        body: JSON.stringify({id: id})
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/premios')
+      })
+     }
+
+     function editPremio(id, tipo, descripcion, puntos){
+      $('#edit-id').val(id)
+      $('#edit-tipo').val(tipo)
+      $('#edit-tipo').trigger('change')
+      $('#edit-puntos').val(puntos)
+      $('#edit-descripcion').val(descripcion)
+     }
+
+     $('#save-premio').click(function(){
+      let premio = {
+        id: $('#edit-id').val(),
+        tipo: $('#edit-tipo').val(),
+        puntos: $('#edit-puntos').val(),
+        descripcion: $('#edit-descripcion').val()
+      }
+      fetch('/api/premios/editar', {
+        method: 'POST',
+        body: JSON.stringify(premio)
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/premios')
+      })
+     })
   </script>
 
 {% endblock %}

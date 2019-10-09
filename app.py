@@ -52,7 +52,8 @@ def admintrivias():
 
 @app.route('/admin/premios') 
 def adminpremios():
-    return render_template('admin/premios.html')
+    premios = list(db.premios.find({}))
+    return render_template('admin/premios.html', premios=premios)
 
 @app.route('/admin/sorteos') 
 def adminsorteos():
@@ -116,6 +117,24 @@ def api_trivia(id):
 @app.route('/api/trivia', methods = ['POST']) 
 def api_new_trivia():
     return createTrivia(request.get_json(force=True))
+
+# Premios
+@app.route('/api/premios', methods = ['GET'])
+def api_premios():
+    return getAllPremios()
+
+@app.route('/api/premios/nuevo', methods = ['POST'])
+def api_new_premio():
+    return createPremio(request.get_json(force=True))
+
+@app.route('/api/premios/borrar', methods = ['POST'])
+def api_delete_premio():
+    return deletePremio(request.get_json(force=True))
+
+@app.route('/api/premios/editar', methods = ['POST'])
+def api_edit_premio():
+    return editPremio(request.get_json(force=True))
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
