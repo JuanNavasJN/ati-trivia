@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, redirect, request, jsonify
+=======
+from flask import Flask, render_template, redirect, request, jsonify,request, session, abort , flash , redirect, url_for
+from controllers.main import *
+>>>>>>> 3e1fb96cfc8451cbf5bc69977b9409c138139991
 import pymongo
+import os
+import json
+from bson import BSON
+from bson import json_util
 
 # DB -----------------------------------
 
@@ -23,11 +32,56 @@ def index():
 
 @app.route('/login') 
 def login():
+    if session.get('logged_in'):
+        return redirect(url_for('home'))
     return render_template('login/login.html')
+
+@app.route('/loginAuth' , methods=['GET', 'POST'])
+def loginAuth():
+    user = db.user.find_one({"email": request.form.get('inputEmail','')})
+
+    if user == None:
+        return redirect(url_for('login'))
+    else:
+        user = json.dumps(user, sort_keys=True, indent=4, default=json_util.default)
+        user = json.loads(user)
+        if not user['password'] == request.form.get('inputPassword',''):
+            return redirect(url_for('login'))
+        else:
+            session['logged_in'] = True
+            if user['admin'] == True:
+                return redirect(url_for('admin'))
+            else:
+                return redirect(url_for('home'))
+
+
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    return redirect(url_for('login'))
 
 @app.route('/register') 
 def register():
     return render_template('login/register.html')
+
+@app.route('/registerAuth' , methods=['GET', 'POST'])
+def registerAuth():
+    user = db.user.find_one({"email": request.form.get('inputEmail', '')})
+    if user == None:
+      dic = {
+          "email": request.form.get('inputEmail', ''),
+          "password": request.form.get('inputPassword', ''),
+          "admin": False,
+          "nombre": request.form.get('inputFirstName', ''),
+          "apellido": request.form.get('inputLastName', ''),
+          "ranking": 0,
+          "scoare": 0,
+          "imagen": ""
+      }
+      db.user.insert_one(dic)
+      return redirect(url_for('login'))
+    else:
+        return render_template('login/register.html')
 
 @app.route('/forgot-password') 
 def forgotPassword():
@@ -77,10 +131,14 @@ def home():
 
 @app.route('/trivia') 
 def trivia():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('user/trivia.html')
 
 @app.route('/ranking') 
 def ranking():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('user/ranking.html')
 
 @app.route('/help') 
@@ -89,8 +147,11 @@ def ayuda():
 
 @app.route('/cuenta') 
 def cuenta():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('user/cuenta.html')
 
+<<<<<<< HEAD
 @app.route('/sorteos') 
 def sorteos():
     return render_template('user/sorteos.html')
@@ -98,6 +159,10 @@ def sorteos():
 @app.route('/trivia-instantanea') 
 def triviaInstantanea():
     return render_template('user/instant-trivia.html')
+=======
+
+
+>>>>>>> 3e1fb96cfc8451cbf5bc69977b9409c138139991
 
 # ----------------------------- API ------------------------------
 
@@ -171,4 +236,5 @@ def api_edit_sorteo():
     return editSorteo(request.get_json(force=True))
 
 if __name__ == '__main__':
+    app.secret_key = os.urandom(12)
     app.run(debug=True, host='0.0.0.0')
