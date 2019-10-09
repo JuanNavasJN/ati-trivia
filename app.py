@@ -57,7 +57,9 @@ def adminpremios():
 
 @app.route('/admin/sorteos') 
 def adminsorteos():
-    return render_template('admin/sorteos.html')
+    sorteos = list(db.sorteos.find({}))
+    premios = list(db.premios.find({}))
+    return render_template('admin/sorteos.html', sorteos=sorteos, premios=premios)
 
 @app.route('/admin/reglas') 
 def adminReglas():
@@ -135,6 +137,23 @@ def api_delete_premio():
 def api_edit_premio():
     return editPremio(request.get_json(force=True))
 
+
+# Sorteos
+@app.route('/api/sorteos', methods = ['GET'])
+def api_sorteos():
+    return getAllSorteos()
+
+@app.route('/api/sorteos/nuevo', methods = ['POST'])
+def api_new_sorteo():
+    return createSorteo(request.get_json(force=True))
+
+@app.route('/api/sorteos/borrar', methods = ['POST'])
+def api_delete_sorteo():
+    return deleteSorteo(request.get_json(force=True))
+
+@app.route('/api/sorteos/editar', methods = ['POST'])
+def api_edit_sorteo():
+    return editSorteo(request.get_json(force=True))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

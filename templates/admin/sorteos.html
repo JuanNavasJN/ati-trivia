@@ -27,17 +27,15 @@
                   <label for="" data-i18n="type">Tipo</label>
                   <select name="" id="sorteo-type" class="form-control" onchange="handleChangeType()">
                     <option value="ranking">Ranking</option>
-                    <option value="instant">Instantaneo</option>
+                    <option value="instantaneo">Instantaneo</option>
                   </select>
                 </div>
                 <div class="col">
                   <label for="" data-i18n="award"></label>
                   <select name="" id="" class="form-control">
-                    <option value="fisico">100 Puntos</option>
-                    <option value="virtual">Xiaomi Redmi</option>
-                    <option value="virtual">500 puntos</option>
-                    <option value="virtual">Samsung galaxy</option>
-                    <option value="virtual">iPad</option>
+                    {% for premio in premios %}
+                      <option value="{{ premio['_id'] }}">{{ premio['descripcion'] }}</option>
+                    {% endfor %}
                   </select>
                 </div>
               </div>
@@ -118,34 +116,22 @@
                     </tr>
                   </tfoot> -->
                   <tbody id="categories">
-                    <tr>
-                      <td>1</td>
-                      <td>Ranking</td>
-                      <td>Sorteo para el primer lugar</td>
-                      <td>iPad</td>
-                      <td>
-                          <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModalRanking"> 
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Instantaneo</td>
-                      <td>Sorteo instantaneo</td>
-                      <td>500 puntos</td>
-                      <td>
-                          <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModalInstant"> 
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                      </td>
-                    </tr>
+                    {% for sorteo in sorteos %}
+                      <tr>
+                        <td style="max-width: 50px">{{ sorteo['_id'] }}</td>
+                        <td>{{ sorteo['tipo'] }}</td>
+                        <td>{{ sorteo['descripcion'] }}</td>
+                        <td>{{ sorteo['premio']['descripcion'] }}</td>
+                        <td>
+                            <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModalRanking"> 
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger btn-circle btn-sm">
+                              <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                      </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
@@ -215,7 +201,7 @@
                   <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                   </span>
-                  <span class="text" id="save-category">Guardar</span>
+                  <span class="text" id="save-sorteo">Guardar</span>
                 </a>
               </div>
             </div>
@@ -316,7 +302,7 @@
     const handleChangeType = e => {
       let type = $('#sorteo-type').val()
 
-      if(type === "instant"){
+      if(type === "instantaneo"){
         $('#instant-type').show()
         $('#ranking-type').hide()
       }else{
@@ -324,6 +310,13 @@
         $('#ranking-type').show()
       }
     }
+
+    $('#save-sorteo').click(function(){
+      let sorteo = {
+        tipo: $('#sorteo-type').val(),
+
+      }
+    })
      
   </script>
 
