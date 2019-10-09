@@ -171,7 +171,10 @@
                           </select>
                         </td>
                         <td>
-                          
+                            <a href="#" class="btn btn-info btn-circle btn-sm" onclick="editTrivia('{{ trivia._id }}', '{{ trivia.question }}', '{{ trivia.category }}', '{{ trivia.correct }}', '{{ trivia.options[0] }}', '{{ trivia.options[1] }}', '{{ trivia.options[2] }}', '{{ trivia.options[3] }}')"> 
+                              <i class="fas fa-pencil-alt"></i>
+                            </a>
+
                             <button class="btn btn-danger btn-circle btn-sm delete-trivia" id="{{ trivia['_id'] }}" >
                               <i class="fas fa-trash delete-trivia" id="{{ trivia['_id'] }}" ></i>
                             </button>
@@ -203,44 +206,40 @@
               </button>
             </div>
             <div class="modal-body">
+                <input type="hidden" id="edit-id">
                 <div class="row">
                   <div class="col">
                     <label for="trivia">Pregunta</label>
-                    <textarea id="trivia" class="form-control" style="resize: none;"></textarea>
+                    <textarea id="edit-question" class="form-control" style="resize: none;"></textarea>
                   </div>
                 </div>
                 <div class="row mt-2">
                   <div class="col">
                     <label for="category-trivia" >Categoria</label>
-                    <select class="form-control" id="category-trivia">
-                      <option value="general">General</option>
-                      <option value="deportes">Deportes</option>
-                      <option value="cultura">Cultura</option>
+                    <select class="form-control" id="edit-categoria">
+                      {% for category in categories %}
+                        <option value="{{ category.name }}" >{{ category.name  }}</option>
+                      {% endfor %}
                     </select>
-                  </div>
-  
-                  <div class="col">
-                    <label for="duration-trivia">Duracion</label>
-                    <input type="number" id="duration-trivia" class="form-control"/>
                   </div>
   
                   <div class="col">
                       <label for="duration-trivia">Opcion correcta</label>
                       <div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="edit-option1" value="1">
                             <label class="form-check-label" for="inlineRadio1">1</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="edit-option2" value="2">
                             <label class="form-check-label" for="inlineRadio2">2</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="edit-option3" value="3">
                             <label class="form-check-label" for="inlineRadio1">3</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="edit-option4" value="4">
                             <label class="form-check-label" for="inlineRadio2">4</label>
                           </div>
                       </div>
@@ -250,34 +249,23 @@
   
                 <div class="row mt-2">
                   <div class="col">
-                    <label for="image-trivia">Imagen</label>
-                    <input type="file" class="form-control-file" id="image-trivia"/>
-                  </div>
-                  <div class="col">
-                      <label for="audio-trivia">Audio</label>
-                      <input type="file" class="form-control-file" id="audio-trivia"/>
-                  </div>
-                </div>
-  
-                <div class="row mt-2">
-                  <div class="col">
                     <label for="">Opcion 1</label>
-                    <input type="text" class="form-control">
+                    <input type="text" id="edit-opt1" class="form-control">
                   </div>
                   <div class="col">
                     <label for="">Opcion 2</label>
-                    <input type="text" class="form-control">
+                    <input type="text" id="edit-opt2" class="form-control">
                   </div>
                 </div>
   
                 <div class="row mt-2">
                   <div class="col">
                     <label for="">Opcion 3</label>
-                    <input type="text" class="form-control">
+                    <input type="text" id="edit-opt3" class="form-control">
                   </div>
                   <div class="col">
                     <label for="">Opcion 4</label>
-                    <input type="text" class="form-control">
+                    <input type="text" id="edit-opt4" class="form-control">
                   </div>
                 </div>
             </div>
@@ -292,7 +280,7 @@
                 <span class="icon text-white-50">
                   <i class="fas fa-check"></i>
                 </span>
-                <span class="text" id="save-category">Guardar</span>
+                <span class="text" id="edit-trivia">Guardar</span>
               </a>
             </div>
           </div>
@@ -311,7 +299,43 @@
           reader.onerror = error => reject(error);
       });
 
+      function editTrivia(id, question, category, correct, opcion1, opcion2, opcion3, opcion4){
+        $('#editModal').modal('show')
+        $('#edit-id').val(id)
+        $('#edit-question').val(question)
+        $('#edit-categoria').val(category)
+        $('#edit-categoria').trigger('change')
+        $('#edit-option'+correct).click()
+        $('#edit-opt1').val(opcion1)
+        $('#edit-opt2').val(opcion2)
+        $('#edit-opt3').val(opcion3)
+        $('#edit-opt4').val(opcion4)
+      }
+
       $(document).ready( () => { 
+        $('#edit-trivia').click(e => {
+          let trivia = {
+            id: $('#edit-id').val(),
+            question: $('#edit-question').val(),
+            category: $('#edit-categoria').val(),
+            correct: $('input[name="inlineRadioOptions"]:checked').val(),
+            options: [
+              $('#edit-opt1').val(),
+              $('#edit-opt2').val(),
+              $('#edit-opt3').val(),
+              $('#edit-opt4').val()
+            ]
+          }
+          fetch('/api/trivia/editar', {
+            method: 'POST',
+            body: JSON.stringify(trivia)
+          })
+          .then(data => data.json())
+          .then(res => {
+            location.replace('/admin/trivias')
+          })
+        })
+
 
         $('.delete-trivia').click( e => {
           const id = e.target.id

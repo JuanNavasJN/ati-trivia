@@ -216,6 +216,10 @@ def api_new_trivia():
 def api_delete_trivia(id):
     return deleteTrivia(id)
 
+@app.route('/api/trivia/editar', methods = ['POST'])
+def api_edit_trivia():
+    return editTrivia(request.get_json(force=True))
+
 # Premios
 @app.route('/api/premios', methods = ['GET'])
 def api_premios():
