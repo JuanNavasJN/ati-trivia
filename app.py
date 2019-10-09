@@ -36,6 +36,7 @@ def loginAuth():
     user = db.user.find_one({"email": request.form.get('inputEmail','')})
 
     if user == None:
+        flash("Correo o contraseña invalido")
         return redirect(url_for('login'))
     else:
         user = json.dumps(user, sort_keys=True, indent=4, default=json_util.default)
@@ -84,30 +85,42 @@ def forgotPassword():
     
 @app.route('/admin')
 def admin():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return redirect('/admin/categorias', code=302)
 
 @app.route('/admin/dash')
 def admindashboard():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/dashboard.html')
 
 @app.route('/admin/categorias') 
 def admincategorias():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     categories = list(db.category.find({}))
     return render_template('admin/categorias.html', categories=categories)
 
 @app.route('/admin/trivias') 
 def admintrivias():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     categories = list(db.category.find({}))
     trivias = list(db.trivias.find({}))
     return render_template('admin/trivias.html', categories=categories, trivias=trivias)
 
 @app.route('/admin/premios') 
 def adminpremios():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     premios = list(db.premios.find({}))
     return render_template('admin/premios.html', premios=premios)
 
 @app.route('/admin/sorteos') 
 def adminsorteos():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     sorteos = list(db.sorteos.find({}))
     premios = list(db.premios.find({}))
     trivias = list(db.trivias.find({}))
@@ -115,6 +128,8 @@ def adminsorteos():
 
 @app.route('/admin/reglas') 
 def adminReglas():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/reglas.html')
    
 #Rutas para el Usuario 
