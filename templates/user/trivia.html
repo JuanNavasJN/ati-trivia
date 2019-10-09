@@ -5,8 +5,8 @@
   <div class="container mt-3 mb-3">
     <div class="row">
       <div class="col-md-5  col-12">
-        <h6 class="text-muted">DEPORTES</h6>
-        <h1>El mejor del futbol</h1>
+       
+        <h1>{{ trivias[0].category }}</h1>
       </div>
       <div class="col-md-7 col-12 text-center">
         <h6 id="extraPoints" class="text-muted" data-i18n="timeRemaining"></h6>
@@ -29,9 +29,17 @@
       <div class="col-md-8 col-12">
         <div id="pregunta" class="card text-center text-dark border-dark">
           <div class="trivia card-body">
-            <h2 class="card-title">
-              ¿Cual es el jugador de futbol con mas goles en mundiales?
-            </h2>
+            
+                {% if trivias[0].image %}
+                  <img src="{{ trivias[0].image }}" alt="" style="max-height: 20vh">
+                {% elif trivias[0].audio %}
+                  <audio controls src="{{ trivias[0].audio }}"></audio>
+                {% elif trivias[0].question %}
+                  <h2 class="card-title">
+                      {{ trivias[0].question }}
+                  </h2>
+                {%endif %}
+                
           </div>
           <div class="trivia card-foote text-muted">
             Responde por 150 puntos!
@@ -55,7 +63,7 @@
                   onClick="onSelect('op1')"
                   class="btn btn-outline-dark btn-block"
                 >
-                  Cristiano Ronaldo
+                {{ trivias[0].options[0] }}
                 </button>
               </div>
             </div>
@@ -75,7 +83,7 @@
                   onClick="onSelect('op2')"
                   class="btn  btn-outline-dark btn-block"
                 >
-                  Messi
+                  {{ trivias[0].options[1] }}
                 </button>
               </div>
             </div>
@@ -95,7 +103,7 @@
                   onClick="onSelect('op3')"
                   class="btn btn-outline-dark btn-block"
                 >
-                  Neymar
+                 {{ trivias[0].options[2] }}
                 </button>
               </div>
             </div>
@@ -115,7 +123,7 @@
                   onClick="onSelect('op4')"
                   class="btn btn-outline-dark btn-block"
                 >
-                  Bale
+                  {{ trivias[0].options[3] }}
                 </button>
               </div>
             </div>
