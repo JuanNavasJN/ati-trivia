@@ -63,7 +63,8 @@ def adminsorteos():
 
 @app.route('/admin/reglas') 
 def adminReglas():
-    return render_template('admin/reglas.html')
+    rules = list(db.rules.find({}))
+    return render_template('admin/reglas.html', rules=rules)
    
 #Rutas para el Usuario 
 
@@ -82,7 +83,8 @@ def ranking():
 
 @app.route('/help') 
 def ayuda():
-    return render_template('user/ayuda.html')
+    rules = list(db.rules.find({}))
+    return render_template('user/ayuda.html', rules=rules)
 
 @app.route('/cuenta') 
 def cuenta():
@@ -154,6 +156,25 @@ def api_delete_sorteo():
 @app.route('/api/sorteos/editar', methods = ['POST'])
 def api_edit_sorteo():
     return editSorteo(request.get_json(force=True))
+
+
+# Reglas
+
+@app.route('/api/reglas', methods = ['GET'])
+def api_reglas():
+    return getAllRules()
+
+@app.route('/api/regla/<id>', methods = ['GET']) 
+def api_regla(id):
+    return getOneRule(id)
+
+@app.route('/api/regla', methods = ['POST'])
+def api_new_regla():
+    return createRule(request.get_json(force=True))
+
+@app.route('/api/regla/<id>', methods = ['DELETE'])
+def api_delete_regla(id):
+    return deleteRule(id)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

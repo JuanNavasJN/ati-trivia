@@ -1,14 +1,14 @@
 {% extends "user/base-user.html" %}
 
 {% block content %}
-<main class="bg-grey">
+<main class="bg-grey container">
     <h1 class=" text-center" data-i18n="rules"></h1>
-    <div class="mx-auto card mb-2 border-dark w-50 h-auto">
+    <div class="mx-auto card mb-2 border-dark h-auto">
         <div class="card-body">
-            <p class="card-text">1)Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse molestias architecto, est quis pa</p>
-            <p class="card-text">2)Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse molestias architecto, est quis p</p>
-            <p class="card-text">3)Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse molestias architecto, est quis p</p>
-            <p class="card-text">4)Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse molestias architecto, est quis p</p>
+            {% for rule in rules %}
+                <h2>{{ rule['name'] }}</h2>
+                <p>{{ rule['description'] }}</p>
+            {% endfor %}
         </div>
     </div>
 </main>
