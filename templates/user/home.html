@@ -1,44 +1,47 @@
-{% extends "user/base-user.html" %}
-
-{% block content %}
+{% extends "user/base-user.html" %} {% block content %}
 <main class="bg-grey">
-    <h1 class=" text-center" data-i18n="categories"></h1>
-    <div class="container mt-4 mb-4">
-      <div class="row">
-        {% if categories %}
-          {% for category in categories %}
-            <div class="col-md-6 col-12">
-              <div class="card mb-3 border-dark">
-                <div class="row no-gutters">
-                  <div class="col-4">
-                    <img src="{{ category.image }}" class="card-img category-img" alt="{{ category.name }}">
-                  </div>
-                  <div class="col-8">
-                    <div class="card-body">
-                      <h1 class="card-title">{{ category.name }}</h1>
-                      <span class="text-muted">Ultimo campeon: Username</span>
-                      <br>
-                      <small class="text-muted">45 nuevas preguntas</small>
-                      <p class="mt-4">
-                        <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+  <div class="container mt-4 mb-4">
+    <div class="row">
+      {% if categories %} {% for category in categories %}
+      <div class="col-md-6 col-12">
+        <div class="card mb-3 border-dark">
+          <div class="row no-gutters">
+            <div class="col-4">
+              <img
+                src="{{ category.image }}"
+                class="card-img category-img"
+                alt="{{ category.name }}"
+              />
+            </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h1 class="card-title">{{ category.name }}</h1>
+                <span class="text-muted">Ultimo campeon: Username</span>
+                <br />
+                <small class="text-muted">45 nuevas preguntas</small>
+                <p class="mt-4">
+                  <a
+                    href="/trivia/{{ category.name }}"
+                    class="btn btn-dark btn-block"
+                    data-i18n="play"
+                  ></a>
+                </p>
               </div>
             </div>
-          {% endfor %}
-        {% else %}
-        <h2 style="text-align: center">No hay categorias creadas aún.</h2>
-        {% endif %}
+          </div>
+        </div>
       </div>
+      {% endfor %} {% else %}
+      <h2 style="text-align: center">No hay categorias creadas aún.</h2>
+      {% endif %}
     </div>
+  </div>
   }
   <script type="text/javascript">
-    async function loadCategories(){
-      let response = await fetch('/api/categories')
-      let data = await response.json()
-      let html = ''
+    async function loadCategories() {
+      let response = await fetch("/api/categories");
+      let data = await response.json();
+      let html = "";
       data.forEach(categoria => {
         html += `
           <div class="col-md-6 col-12">
@@ -54,18 +57,34 @@
                     <br>
                     <small class="text-muted">45 nuevas preguntas</small>
                     <p class="mt-4">
-                      <a href="/trivia" class="btn btn-dark btn-block" data-i18n="play"></a>
+                      <a href="/trivia/${categoria.name}" class="btn btn-dark btn-block" data-i18n="play"></a>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        `
-      })
+        `;
+      });
     }
 
-    loadCategories()
+    loadCategories();
   </script>
-  </main>
+
+  <script>
+    function navigateToInstant() {
+      window.location.href = "/trivia-instantanea";
+    }
+
+    window.setTimeout(function() {
+      console.log("working");
+      //Swal.fire({
+       // type: "question",
+        //title: "Trivia instantanea!",
+        //timer: 20000,
+        //onClose: navigateToInstant()
+      //});
+    }, 5000);
+  </script>
+</main>
 {% endblock %}

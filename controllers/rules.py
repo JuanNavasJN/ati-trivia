@@ -60,3 +60,5 @@ def editSorteo(data):
 		dumps(rules_db),
 		mimetype='application/json'
 	)
+
+    
