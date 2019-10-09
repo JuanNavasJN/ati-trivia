@@ -84,30 +84,44 @@ def forgotPassword():
     
 @app.route('/admin')
 def admin():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return redirect('/admin/categorias', code=302)
 
 @app.route('/admin/dash')
 def admindashboard():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/dashboard.html')
 
 @app.route('/admin/categorias') 
 def admincategorias():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/categorias.html')
 
 @app.route('/admin/trivias') 
 def admintrivias():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/trivias.html')
 
 @app.route('/admin/premios') 
 def adminpremios():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/premios.html')
 
 @app.route('/admin/sorteos') 
 def adminsorteos():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/sorteos.html')
 
 @app.route('/admin/reglas') 
 def adminReglas():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
     return render_template('admin/reglas.html')
    
 #Rutas para el Usuario 
