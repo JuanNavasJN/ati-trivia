@@ -13,6 +13,14 @@ def getOneTrivia(id):
         mimetype='application/json'
     )
 
+# def getOneTrivia(category):
+#     print(id)
+#     trivia = Trivias.find_one({'_id': ObjectId(id)})
+#     return Response(
+#         dumps(trivia),
+#         mimetype='application/json'
+#     )
+
 def getAllTrivias():
     all_trivias = Trivias.find({})
     return Response(

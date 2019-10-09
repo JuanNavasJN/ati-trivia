@@ -130,6 +130,13 @@ def trivia():
         return redirect(url_for('login'))
     return render_template('user/trivia.html')
 
+@app.route('/trivia/<category>') 
+def trivia_category(category):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    trivias = list(db.trivias.find({'category': category}))
+    return render_template('user/trivia.html', trivias=trivias)
+
 @app.route('/ranking') 
 def ranking():
     if not session.get('logged_in'):
@@ -181,6 +188,10 @@ def api_trivias():
 @app.route('/api/trivia/<id>', methods = ['GET']) 
 def api_trivia(id):
     return getOneTrivia(id)
+
+@app.route('/api/triviacat/<category>', methods = ['GET']) 
+def api_trivia_cat(category):
+    return getOneTriviaCat(category)
 
 @app.route('/api/trivia', methods = ['POST']) 
 def api_new_trivia():
