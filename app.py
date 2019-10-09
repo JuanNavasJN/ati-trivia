@@ -48,7 +48,9 @@ def admincategorias():
 
 @app.route('/admin/trivias') 
 def admintrivias():
-    return render_template('admin/trivias.html')
+    categories = list(db.category.find({}))
+    trivias = list(db.trivias.find({}))
+    return render_template('admin/trivias.html', categories=categories, trivias=trivias)
 
 @app.route('/admin/premios') 
 def adminpremios():
@@ -120,6 +122,10 @@ def api_trivia(id):
 @app.route('/api/trivia', methods = ['POST']) 
 def api_new_trivia():
     return createTrivia(request.get_json(force=True))
+
+@app.route('/api/trivia/<id>', methods = ['DELETE']) 
+def api_delete_trivia(id):
+    return deleteTrivia(id)
 
 # Premios
 @app.route('/api/premios', methods = ['GET'])

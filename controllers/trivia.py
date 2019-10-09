@@ -20,11 +20,26 @@ def getAllTrivias():
         mimetype='application/json'
     )
 
+def deleteTrivia(id):
+    Trivias.delete_one({'_id': ObjectId(id)})
+    trivias_db = Trivias.find({})
+
+    return Response(
+        dumps(trivias_db),
+        mimetype='application/json'
+    )
+
 def createTrivia(data):
 
     trivia = {
-        'question': data['question']
+        "question": data['question'],
+        "category": data['category'],
+        "correct": data['correct'],
+        "image": data['image'],
+        "audio": data['audio'],
+        "options": data['options'],
     }
+
     Trivias.insert(trivia)
     trivia_db = Trivias.find_one(trivia)
 

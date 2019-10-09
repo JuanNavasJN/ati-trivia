@@ -21,47 +21,54 @@
               <h6 class="m-0 font-weight-bold text-primary" data-i18n="addTrivia"></h6>
             </div>
             <div class="card-body">
+              <form action="" id="formCorrectOpt">
               <div class="row">
                 <div class="col">
                   <label for="trivia" data-i18n="question"></label>
-                  <textarea id="trivia" class="form-control" style="resize: none;"></textarea>
+                  <textarea id="trivia" class="form-control" style="resize: none;" required></textarea>
                 </div>
               </div>
               <div class="row mt-2">
                 <div class="col">
                   <label for="category-trivia" data-i18n="category"></label>
                   <select class="form-control" id="category-trivia">
-                    <option value="general">General</option>
-                    <option value="deportes">Deportes</option>
-                    <option value="cultura">Cultura</option>
+
+                    {% for category in categories %}
+
+                      <option value="{{ category.name }}" >{{ category.name  }}</option>
+                     
+                    {% endfor %}
                   </select>
                 </div>
 
-                <div class="col">
+                <!-- <div class="col">
                   <label for="duration-trivia" data-i18n="duration"></label>
                   <input type="number" id="duration-trivia" class="form-control"/>
-                </div>
+                </div> -->
 
                 <div class="col">
                     <label for="duration-trivia" data-i18n="correctOpt"></label>
-                    <div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                          <label class="form-check-label" for="inlineRadio1">1</label>
+                   
+                        <div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" required>
+                              <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" required>
+                              <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" required>
+                              <label class="form-check-label" for="inlineRadio1">3</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="4" required>
+                              <label class="form-check-label" for="inlineRadio2">4</label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                          <label class="form-check-label" for="inlineRadio2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1">
-                          <label class="form-check-label" for="inlineRadio1">3</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2">
-                          <label class="form-check-label" for="inlineRadio2">4</label>
-                        </div>
-                    </div>
+                    
+                    
                     
                 </div>
               </div>
@@ -69,7 +76,7 @@
               <div class="row mt-2">
                 <div class="col">
                   <label for="image-trivia" data-i18n="image"></label>
-                  <input type="file" class="form-control-file" id="image-trivia"/>
+                  <input type="file" class="form-control-file" id="image-trivia" />
                 </div>
                 <div class="col">
                     <label for="audio-trivia">Audio</label>
@@ -80,37 +87,37 @@
               <div class="row mt-2">
                 <div class="col">
                   <label for=""><span data-i18n="option"></span> 1</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="option1" required>
                 </div>
                 <div class="col">
                   <label for=""><span data-i18n="option"></span> 2</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="option2" required>
                 </div>
               </div>
 
               <div class="row mt-2">
                 <div class="col">
                   <label for=""><span data-i18n="option"></span> 3</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="option3" required>
                 </div>
                 <div class="col">
                   <label for=""><span data-i18n="option"></span> 4</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="option4" required>
                 </div>
               </div>
 
               <div class="row mt-2">
                   <div class="col">
-                    <a href="#" class="btn btn-success btn-icon-split">
+                    <button type="submit" class="btn btn-success btn-icon-split" id="save-trivia">
                       <span class="icon text-white-50">
                         <i class="fas fa-check"></i>
                       </span>
                       <span class="text" id="save-trivia" data-i18n="save"></span>
-                    </a>
+                    </button>
                   </div>
               </div>
-                
-              
+           
+              </form>
             </div>
           </div>
 
@@ -129,8 +136,7 @@
                       <th data-i18n="image">Imagen</th>
                       <th>Audio</th>
                       <th data-i18n="category">Categoria</th>
-                      <th data-i18n="duration">Duracion</th>
-                      <th data-i18n="option">Opcion</th>
+                      <th data-i18n="option">Correcta</th>
                       <th data-i18n="options">Opciones</th>
                       <th>Mod</th>
                     </tr>
@@ -142,81 +148,38 @@
                     </tr>
                   </tfoot> -->
                   <tbody id="categories">
-                    <tr>
-                      <td>1</td>
-                      <td>Cual es la verdadera identidad de HeMan?</td>
-                      <td></td>
-                      <td></td>
-                      <td>Categoria</td>
-                      <td>10</td>
-                      <td>2</td>
-                      <td>
-                        <select name="" id="" class="form-control">
-                          <option value="">Príncipe Adams</option>
-                          <option value="">Príncipe Arthur</option>
-                          <option value="">Príncipe Albert</option>
-                          <option value="">Príncipe Orko</option>
-                        </select>
-                      </td>
-                      <td>
-                          <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModal">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td></td>
-                      <td>ave.png</td>
-                      <td></td>
-                      <td>Categoria</td>
-                      <td>10</td>
-                      <td>3</td>
-                      <td>
-                        <select name="" id="" class="form-control">
-                          <option value="">Reinita Común</option>
-                          <option value="">Gonzalito</option>
-                          <option value="">Tordo Maicero</option>
-                          <option value="">Canario de tejado</option>
-                        </select>
-                      </td>
-                      <td>
-                          <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModal">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td></td>
-                      <td></td>
-                      <td>audio.mp3</td>
-                      <td>Categoria</td>
-                      <td>30</td>
-                      <td>2</td>
-                      <td>
-                        <select name="" id="" class="form-control">
-                          <option value="">Dormir contigo</option>
-                          <option value="">Parampampam</option>
-                          <option value="">Que se mueran los feos</option>
-                          <option value="">Sazón</option>
-                        </select>
-                      </td>
-                      <td>
-                          <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModal">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle btn-sm">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                      </td>
-                    </tr>
+
+                    {% for trivia in trivias %}
+
+                      <tr>
+                        <td>{{ trivia['_id'] }}</td>
+                        <td>{{ trivia.question }}</td>
+                        <td>
+                          <img src="{{ trivia.image }}" alt="">
+                        </td>
+                        <td>
+                          <audio controls src="{{ trivia.audio }}"></audio>
+                        </td>
+                        <td>{{ trivia.category }}</td>
+                        <td>{{ trivia.correct }}</td>
+                        <td>
+                          <select name="" id="" class="form-control">
+
+                              {% for option in trivia.options %}
+                                <option value="">{{ option }}</option>
+                              {% endfor %}
+                          </select>
+                        </td>
+                        <td>
+                          
+                            <button class="btn btn-danger btn-circle btn-sm delete-trivia" id="{{ trivia['_id'] }}" >
+                              <i class="fas fa-trash delete-trivia" id="{{ trivia['_id'] }}" ></i>
+                            </button>
+                        </td>
+                      </tr>
+                     
+                    {% endfor %}
+                    
                   </tbody>
                 </table>
               </div>
@@ -341,6 +304,75 @@
 {% block script %}
 
   <script>
+      const toBase64 = file => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = error => reject(error);
+      });
+
+      $(document).ready( () => { 
+
+        $('.delete-trivia').click( e => {
+          const id = e.target.id
+          console.log(id)
+          fetch('/api/trivia/' + id, {
+            method: 'DELETE',
+          })
+            .then(data => data.json())
+            .then(res => {
+              location.replace('/admin/trivias')
+            })
+        })
+
+        $('#formCorrectOpt').submit( async e => {
+          e.preventDefault()
+  
+          let options = [
+            $('#option1').val(),
+            $('#option2').val(),
+            $('#option3').val(),
+            $('#option4').val()
+          ]
+
+          let audio64 = null;
+          let image64 = null;
+  
+          if(document.querySelector('#audio-trivia').files[0]){
+            let audio = document.querySelector('#audio-trivia').files[0];
+            audio64 = await toBase64(audio);
+          }
+          
+          if(document.querySelector('#image-trivia').files[0]){
+            let image = document.querySelector('#image-trivia').files[0];
+            image64 = await toBase64(image);
+          }
+         
+          let data = {
+            question: $('#trivia').val(),
+            category: $('#category-trivia').val(),
+            correct: $('input[name=inlineRadioOptions]:checked', '#formCorrectOpt').val(),
+            options,
+            audio: audio64,
+            image: image64
+          }
+
+          $('#save-trivia').toggleClass('btn-info', 'btn-success')
+          console.log("trivia enviada...")
+
+          fetch('/api/trivia', {
+            method: 'POST',
+            body: JSON.stringify(data)
+          })
+          .then( data => data.json())
+          .then( res => {
+            console.log(res)
+            location.replace('/admin/trivias')
+          })
+          
+          
+        })
+      })
       
      
   </script>
