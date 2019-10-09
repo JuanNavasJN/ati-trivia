@@ -23,11 +23,12 @@ def createSorteo(data):
 			'fecha': data['fecha']
 		}
 	else:
+		trivia_db = db.trivias.find_one({'_id': ObjectId(data['trivia'])})
 		sorteo = {
 			'tipo': data['tipo'],
 			'premio': premio_db,
 			'descripcion': data['descripcion'],
-			'trivia': data['trivia'],
+			'trivia': trivia_db,
 			'hora_inicio': data['hora_inicio'],
 			'hora_fin': data['hora_fin'],
 			'frecuencia': data['frecuencia']
@@ -56,16 +57,25 @@ def editSorteo(data):
 	query = {
 		'_id': ObjectId(data['id'])
 	}
-	new_values = {
-		'tipo': data['tipo'],
-		'premio': data['premio'],
-		'descripcion': data['descripcion'],
-		'fecha': data['fecha'],
-		'trivia': data['trivia'],
-		'hora_inicio': data['hora_inicio'],
-		'hora_fin': data['hora_fin'],
-		'frecuencia': data['frecuencia']
-	}
+	premio_db = db.premios.find_one({'_id': ObjectId(data['premio'])})
+	if (data['tipo'] == 'ranking'):
+		new_values = {
+			'tipo': data['tipo'],
+			'premio': premio_db,
+			'descripcion': data['descripcion'],
+			'fecha': data['fecha']
+		}
+	else:
+		trivia_db = db.trivias.find_one({'_id': ObjectId(data['trivia'])})
+		new_values = {
+			'tipo': data['tipo'],
+			'premio': premio_db,
+			'descripcion': data['descripcion'],
+			'trivia': trivia_db,
+			'hora_inicio': data['hora_inicio'],
+			'hora_fin': data['hora_fin'],
+			'frecuencia': data['frecuencia']
+		}
 
 	Sorteos.replace_one(query, new_values)
 	sorteos_db = Sorteos.find_one(query)

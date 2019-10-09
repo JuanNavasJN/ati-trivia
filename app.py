@@ -59,7 +59,8 @@ def adminpremios():
 def adminsorteos():
     sorteos = list(db.sorteos.find({}))
     premios = list(db.premios.find({}))
-    return render_template('admin/sorteos.html', sorteos=sorteos, premios=premios)
+    trivias = list(db.trivias.find({}))
+    return render_template('admin/sorteos.html', sorteos=sorteos, premios=premios, trivias=trivias)
 
 @app.route('/admin/reglas') 
 def adminReglas():

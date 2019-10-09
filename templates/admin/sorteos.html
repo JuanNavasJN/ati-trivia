@@ -32,7 +32,7 @@
                 </div>
                 <div class="col">
                   <label for="" data-i18n="award"></label>
-                  <select name="" id="" class="form-control">
+                  <select id="sorteo-premio" class="form-control">
                     {% for premio in premios %}
                       <option value="{{ premio['_id'] }}">{{ premio['descripcion'] }}</option>
                     {% endfor %}
@@ -43,39 +43,37 @@
               <div class="row mt-2">
                 <div class="col">
                   <label for="trivia" data-i18n="description">Descripcion</label>
-                  <input type="text" class="form-control">
+                  <input type="text" id="sorteo-descripcion" class="form-control">
                 </div>
               </div>
 
               <div class="row mt-2" id="instant-type">
                 <div class="col">
                   <label for="trivia">Trivia</label>
-                  <select name="" id="" class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                  <select name="" id="sorteo-trivia" class="form-control">
+                    {% for trivia in trivias %}
+                      <option value="{{ trivia['_id'] }}">{{ trivia['question'] }}</option>
+                    {% endfor %}
                   </select>
                 </div>
                 <div class="col">
                   <label for="trivia" data-i18n="startTime"></label>
-                  <input type="time" class="form-control">
+                  <input type="time" id="sorteo-inicio" class="form-control">
                 </div>
                 <div class="col">
                   <label for="trivia" data-i18n="endTime"></label>
-                  <input type="time" class="form-control">
+                  <input type="time" id="sorteo-fin" class="form-control">
                 </div>
                 <div class="col">
                   <label for="trivia" data-i18n="frequency"></label>
-                  <input type="time" class="form-control">
+                  <input type="time" id="sorteo-frecuencia" class="form-control">
                 </div>
               </div>
 
               <div class="row mt-2" id="ranking-type">
                 <div class="col">
                   <label for="trivia" data-i18n="datetime"></label>
-                  <input type="datetime-local" class="form-control">
+                  <input type="date" id="sorteo-fecha" class="form-control">
                 </div>
               </div>
 
@@ -123,10 +121,10 @@
                         <td>{{ sorteo['descripcion'] }}</td>
                         <td>{{ sorteo['premio']['descripcion'] }}</td>
                         <td>
-                            <a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#editModalRanking"> 
+                            <a href="#" class="btn btn-info btn-circle btn-sm" onclick="editSorteo('{{ sorteo._id }}', '{{ sorteo.tipo }}', '{{ sorteo.descripcion }}', '{{ sorteo.premio._id}}', '{{ sorteo.fecha }}', '{{ sorteo.hora_inicio }}', '{{ sorteo.hora_fin }}', '{{ sorteo.frecuencia }}', '{{ sorteo.trivia }}')"> 
                               <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm">
+                            <a href="#" onclick="deleteSorteo('{{ sorteo._id }}')" class="btn btn-danger btn-circle btn-sm">
                               <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -157,20 +155,19 @@
               <div class="modal-body">
                   <div class="row mt-2">
                     <div class="col">
+                      <input type="hidden" id="ranking-id">
                       <label for="">Tipo</label>
-                      <select name="" id="sorteo-type" class="form-control" >
+                      <select name="" id="ranking-tipo" class="form-control" >
                         <option value="ranking">Ranking</option>
-                        <option value="instant">Instantaneo</option>
+                        <option value="instantaneo">Instantaneo</option>
                       </select>
                     </div>
                     <div class="col">
                       <label for="">Premio</label>
-                      <select name="" id="" class="form-control">
-                        <option value="fisico">100 Puntos</option>
-                        <option value="virtual">Xiaomi Redmi</option>
-                        <option value="virtual">500 puntos</option>
-                        <option value="virtual">Samsung galaxy</option>
-                        <option value="virtual">iPad</option>
+                      <select id="ranking-premio" class="form-control">
+                        {% for premio in premios %}
+                          <option value="{{ premio['_id'] }}">{{ premio['descripcion'] }}</option>
+                        {% endfor %}
                       </select>
                     </div>
                   </div>
@@ -178,7 +175,7 @@
                   <div class="row mt-2">
                     <div class="col">
                       <label for="trivia">Descripcion</label>
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" id="ranking-descripcion">
                     </div>
                   </div>
     
@@ -186,7 +183,7 @@
                   <div class="row mt-2" id="ranking-type-modal">
                     <div class="col">
                       <label for="trivia">Fecha y hora</label>
-                      <input type="datetime-local" class="form-control">
+                      <input type="date" class="form-control" id="ranking-fecha">
                     </div>
                   </div>
               </div>
@@ -201,7 +198,7 @@
                   <span class="icon text-white-50">
                     <i class="fas fa-check"></i>
                   </span>
-                  <span class="text" id="save-sorteo">Guardar</span>
+                  <span class="text" id="save-ranking">Guardar</span>
                 </a>
               </div>
             </div>
@@ -222,19 +219,18 @@
                     <div class="row mt-2">
                       <div class="col">
                         <label for="">Tipo</label>
-                        <select name="" id="sorteo-type" class="form-control" >
+                        <input type="hidden" id="inst-id">
+                        <select name="" id="inst-tipo" class="form-control" >
                           <option value="ranking">Ranking</option>
-                          <option value="instant">Instantaneo</option>
+                          <option value="instantaneo">Instantaneo</option>
                         </select>
                       </div>
                       <div class="col">
                         <label for="">Premio</label>
-                        <select name="" id="" class="form-control">
-                          <option value="fisico">100 Puntos</option>
-                          <option value="virtual">Xiaomi Redmi</option>
-                          <option value="virtual">500 puntos</option>
-                          <option value="virtual">Samsung galaxy</option>
-                          <option value="virtual">iPad</option>
+                        <select id="inst-premio" class="form-control">
+                          {% for premio in premios %}
+                            <option value="{{ premio['_id'] }}">{{ premio['descripcion'] }}</option>
+                          {% endfor %}
                         </select>
                       </div>
                     </div>
@@ -242,32 +238,30 @@
                     <div class="row mt-2">
                       <div class="col">
                         <label for="trivia">Descripcion</label>
-                        <input type="text" class="form-control">
+                        <input type="text" id="inst-descripcion" class="form-control">
                       </div>
                     </div>
       
                     <div class="row mt-2" id="instant-type-modal">
                       <div class="col">
                         <label for="trivia">Trivia</label>
-                        <select name="" id="" class="form-control">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
+                        <select id="inst-trivia" class="form-control">
+                          {% for trivia in trivias %}
+                            <option value="{{ trivia['_id'] }}">{{ trivia['question'] }}</option>
+                          {% endfor %}
                         </select>
                       </div>
                       <div class="col">
                         <label for="trivia">Hora Inicio</label>
-                        <input type="time" class="form-control">
+                        <input type="time" id="inst-inicio" class="form-control">
                       </div>
                       <div class="col">
                         <label for="trivia">Hora Fin</label>
-                        <input type="time" class="form-control">
+                        <input type="time" id="inst-fin" class="form-control">
                       </div>
                       <div class="col">
                         <label for="trivia">Frecuencia</label>
-                        <input type="time" class="form-control">
+                        <input type="time" id="inst-frecuencia" class="form-control">
                       </div>
                     </div>
       
@@ -283,7 +277,7 @@
                     <span class="icon text-white-50">
                       <i class="fas fa-check"></i>
                     </span>
-                    <span class="text" id="save-category">Guardar</span>
+                    <span class="text" id="save-inst">Guardar</span>
                   </a>
                 </div>
               </div>
@@ -311,13 +305,104 @@
       }
     }
 
-    $('#save-sorteo').click(function(){
+    $('#save-trivia').click(function(){
       let sorteo = {
         tipo: $('#sorteo-type').val(),
-
+        premio: $('#sorteo-premio').val(),
+        descripcion: $('#sorteo-descripcion').val(),
+        trivia: $('#sorteo-trivia').val(),
+        hora_inicio: $('#sorteo-inicio').val(),
+        hora_fin: $('#sorteo-fin').val(),
+        frecuencia: $('#sorteo-frecuencia').val(),
+        fecha: $('#sorteo-fecha').val()
       }
+      fetch('/api/sorteos/nuevo',{
+        method: 'POST',
+        body: JSON.stringify(sorteo)
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/sorteos')
+      })
     })
-     
+
+    function deleteSorteo(id){
+      fetch('/api/sorteos/borrar', {
+        method: 'POST',
+        body: JSON.stringify({id: id})
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/sorteos')
+      })
+     }
+
+    function editSorteo(id, tipo, descripcion, premio, fecha, hora_inicio, hora_fin, frecuencia, trivia){
+      if(tipo == 'ranking'){
+        $('#ranking-id').val(id)
+        $('#ranking-tipo').val(tipo)
+        $('#ranking-tipo').trigger('change')
+        $('#ranking-premio').val(premio)
+        $('#ranking-premio').trigger('change')
+        $('#ranking-descripcion').val(descripcion)
+        $('#ranking-fecha').val(fecha)
+        $('#ranking-fecha').trigger('change')
+        $('#editModalRanking').modal('show')
+      } else {
+        $('#inst-id').val(id)
+        $('#inst-tipo').val(tipo)
+        $('#inst-tipo').trigger('change')
+        $('#inst-premio').val(premio)
+        $('#inst-premio').trigger('change')
+        $('#inst-descripcion').val(descripcion)
+        $('#inst-trivia').val(trivia)
+        $('#inst-trivia').trigger('change')
+        $('#inst-inicio').val(hora_inicio)
+        $('#inst-fin').val(hora_fin)
+        $('#inst-frecuencia').val(frecuencia)
+        $('#editModalInstant').modal('show')
+      }
+    }
+
+    $('#save-ranking').click(function(){
+      let sorteo = {
+        id: $('#ranking-id').val(),
+        tipo: $('#ranking-tipo').val(),
+        premio: $('#ranking-premio').val(),
+        descripcion: $('#ranking-descripcion').val(),
+        fecha: $('#ranking-fecha').val()
+      }
+      fetch('/api/sorteos/editar', {
+        method: 'POST',
+        body: JSON.stringify(sorteo)
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/sorteos')
+      })
+    })
+
+    $('#save-inst').click(function(){
+      let sorteo = {
+        id: $('#inst-id').val(),
+        tipo: $('#inst-tipo').val(),
+        premio: $('#inst-premio').val(),
+        descripcion: $('#inst-descripcion').val(),
+        trivia: $('#inst-trivia').val(),
+        hora_inicio: $('#inst-inicio').val(),
+        hora_fin: $('#inst-fin').val(),
+        frecuencia: $('#inst-frecuencia').val()
+      }
+      fetch('/api/sorteos/editar', {
+        method: 'POST',
+        body: JSON.stringify(sorteo)
+      })
+      .then(data => data.json())
+      .then(res => {
+        location.replace('/admin/sorteos')
+      })
+    })
+
   </script>
 
 {% endblock %}
